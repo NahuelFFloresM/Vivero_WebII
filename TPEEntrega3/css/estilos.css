@@ -1,0 +1,191 @@
+
+header{
+  background-color: rgb(244, 212, 195);  
+}
+
+.headerTitle{
+  font-size: 50px;
+}
+
+.titleStyle{
+  text-align: center;
+  font-size: 35px;
+}
+
+.cuerpo-text{
+  padding: 0 1%;
+}
+
+.centrado{
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.h1{
+  text-align: center;
+}
+
+.h2{
+  text-align: center;
+}
+
+.tabla{
+  border-collapse: collapse;
+  text-align: center;
+  width: fit-content;
+  width: 98%;
+  margin: 2%;
+ 
+}
+
+/*.tabla thead{
+  padding: 50px;
+}*/
+
+.tabla th, td, tr{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.tabla th{
+  background-color:  rgb(244, 212, 195);
+  color: black;
+  height: 20px;
+  text-align: center;
+  padding:20px; 
+}
+
+.tabla tr:hover{
+  background-color:rgb(232, 155, 141);
+}
+
+.botonStyle{
+  margin: 1%; 
+}
+
+.formStyle{
+  border:1px solid #E1E1E1;
+  border-radius: 10px;
+  padding: 17px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+}
+
+nav li a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+footer{
+  background-color: rgb(244, 212, 195);
+  padding: 1%;
+  margin-right: 0px; 
+  margin-left: 0px; 
+}
+
+.divCuidado{
+  background-color: rgb(244, 212, 195);
+  padding: 2% 2% 2% 2%;
+  margin-bottom: 30px;
+}
+
+.instagram{
+  padding: 0 15px;
+}
+
+.fila{
+  padding-bottom: 5px;
+  border: 2px black;
+}
+
+  
+@media only screen and (max-width: 320px){
+  .headerTitle{
+    font-size: 20px;
+  }
+
+  .titleStyle{
+    font-size: 22px;
+  }
+
+  h1{
+    font-size: 20px;
+  }
+
+  h2{
+    font-size: 18px;
+  }
+}   
+          
+@media only screen and (min-width: 320px){
+  .headerTitle{
+    font-size: 20px;
+  }
+
+  .titleStyle{
+     font-size: 22px;
+  }
+
+  h1{
+    font-size: 20px;
+  }
+
+  h2{
+    font-size: 18px;
+  }
+}
+    
+@media only screen and (min-width: 480px){
+  .headerTitle{
+    font-size: 30px;
+  }
+
+  .titleStyle{
+    font-size: 30px;
+  }
+
+  h1{
+    font-size:25px;
+  }
+
+  h2{
+    font-size: 20px;
+  } 
+}
+      
+@media only screen and (min-width: 768px){
+  .headerTitle{
+    font-size: 50px;
+  }
+
+  .titleStyle{
+    font-size: 45px;
+  }
+
+  h1{
+    font-size: 30px;
+  }
+  h2{
+    font-size: 25px;
+  }    
+}
+
+@media only screen and (min-width: 1024px){
+  .headerTitle{
+    font-size: 50px;
+  }
+
+  .titleStyle{
+    font-size: 35px;
+  }
+     
+  h1{
+    font-size: 30px;
+  }
+
+  h2{
+    font-size: 25px;
+  }
+}
