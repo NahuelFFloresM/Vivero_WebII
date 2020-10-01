@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2020-09-24 18:54:57
+/* Smarty version 3.1.33, created on 2020-09-26 21:17:06
   from 'D:\xampp\htdocs\Floreria\templates\body_home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5f6ccf61766cb4_67319738',
+  'unifunc' => 'content_5f6f93b2801264_18802718',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15d23cb16468c2d33d4f50a706d5865682b1dc65' => 
     array (
       0 => 'D:\\xampp\\htdocs\\Floreria\\templates\\body_home.tpl',
-      1 => 1600965999,
+      1 => 1600986498,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f6ccf61766cb4_67319738 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f6f93b2801264_18802718 (Smarty_Internal_Template $_smarty_tpl) {
 ?><article>
     <h1 class="titleStyle">Bienvenidos!</h1>
     <div class="cuerpo-text">
@@ -70,21 +70,5 @@ function content_5f6ccf61766cb4_67319738 (Smarty_Internal_Template $_smarty_tpl)
         </div>
     </div>
 </section>
-
-
-<?php echo '<script'; ?>
- src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-<?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-<?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-<?php echo '</script'; ?>
-><?php }
+<?php }
 }

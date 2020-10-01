@@ -2,17 +2,17 @@
 
 require_once('libs/Smarty.class.php');
 
-class HomeView {
+class ProductoView {
 
     function __construct(){
-
+        
     }
 
     public function DisplayHome() {
 
         $smarty = new Smarty();
         $smarty->assign('BASE_URL',BASE_URL);
-        $smarty->display('templates/home.tpl');
+        $smarty->display('templates/productos.tpl');
     }
 
     public function DisplayTareasCSR(){
@@ -24,6 +24,13 @@ class HomeView {
 
     public function showError($msg) {
         echo $msg;
+    }
+
+    public function mostrarProductos($productos){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL',BASE_URL);
+        $smarty->assign('productos',$productos);
+        $smarty->display('templates/productos.tpl');
     }
 }
 

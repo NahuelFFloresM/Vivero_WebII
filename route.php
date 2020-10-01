@@ -15,11 +15,12 @@ $router = new Router();
 
 // arma la tabla de ruteo
 $router->addRoute("home","GET","HomeController","getHome");
-$router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
-$router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
-$router->addRoute("tareas/:ID", "DELETE", "TareasApiController", "deleteTask");
-$router->addRoute("tareas", "POST", "TareasApiController", "addTask");
-$router->addRoute("tareas/:ID", "PUT", "TareasApiController", "updateTask");
+$router->addRoute("productos","GET","ProductoController","getProductos");
+// $router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
+// $router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
+// $router->addRoute("tareas/:ID", "DELETE", "TareasApiController", "deleteTask");
+// $router->addRoute("tareas", "POST", "TareasApiController", "addTask");
+// $router->addRoute("tareas/:ID", "PUT", "TareasApiController", "updateTask");
 
 
 // rutea

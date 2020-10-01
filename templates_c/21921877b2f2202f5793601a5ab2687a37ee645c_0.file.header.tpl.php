@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2020-09-24 19:12:59
+/* Smarty version 3.1.33, created on 2020-09-26 21:17:06
   from 'D:\xampp\htdocs\Floreria\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5f6cd39b84f6b2_70525279',
+  'unifunc' => 'content_5f6f93b241c8d3_35321979',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21921877b2f2202f5793601a5ab2687a37ee645c' => 
     array (
       0 => 'D:\\xampp\\htdocs\\Floreria\\templates\\header.tpl',
-      1 => 1600967577,
+      1 => 1600986365,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f6cd39b84f6b2_70525279 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f6f93b241c8d3_35321979 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
@@ -38,17 +38,16 @@ function content_5f6cd39b84f6b2_70525279 (Smarty_Internal_Template $_smarty_tpl)
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
-?action='home'">Home</a>
+                        <a class="nav-link" href="home">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="info.html">Info</a>
+                        <a class="nav-link" href="info">Info</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
+                        <a class="nav-link" href="contacto">Contacto</a>
                     </li>
                 </ul>
             </div>
