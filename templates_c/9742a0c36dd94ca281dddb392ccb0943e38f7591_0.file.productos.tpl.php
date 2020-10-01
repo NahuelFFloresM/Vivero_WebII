@@ -1,6 +1,34 @@
-{include file="head.tpl"}
+<?php
+/* Smarty version 3.1.33, created on 2020-10-02 00:25:37
+  from 'D:\xampp\htdocs\Floreria\templates\productos.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_5f765761cca949_08186500',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '9742a0c36dd94ca281dddb392ccb0943e38f7591' => 
+    array (
+      0 => 'D:\\xampp\\htdocs\\Floreria\\templates\\productos.tpl',
+      1 => 1601591136,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:head.tpl' => 1,
+    'file:header.tpl' => 1,
+    'file:footer.tpl' => 1,
+  ),
+),false)) {
+function content_5f765761cca949_08186500 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender("file:head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 <body>
-{include file="header.tpl"}
+<?php $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
     <article>
         <h1 class="titleStyle">¿Querés conocer nuestros productos?</h1>
         <div class="centrado">
@@ -47,14 +75,25 @@
                         </tr>
                     </thead>        
                     <tbody class="tabla-container">
-                        {foreach from=$productos item=item }                        
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['productos']->value, 'item');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
+?>                        
                         <tr>
-                            <td>{$item->nombre_producto}</td>
-                            <td>{$item->precio_producto}</td>
-                            <td>{$item->precio_producto}</td>
-                            <td>{$item->stock_producto}</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['item']->value->nombre_producto;?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['item']->value->precio_producto;?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['item']->value->precio_producto;?>
+</td>
+                            <td><?php echo $_smarty_tpl->tpl_vars['item']->value->stock_producto;?>
+</td>
                         </tr>
-                        {/foreach}
+                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         
                     </tbody>
                 </table>
@@ -62,4 +101,6 @@
         </section>
     </div>
 </body>
-{include file="footer.tpl"}
+<?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

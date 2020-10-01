@@ -1,6 +1,6 @@
 <?php
-require_once "./Models/HomeModel.php";
-require_once "./Views/HomeView.php";
+require_once "./Models/ProductoModel.php";
+require_once "./Views/ProductoView.php";
 
 class ProductoController {
 
