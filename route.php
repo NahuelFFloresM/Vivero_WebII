@@ -22,7 +22,7 @@ $router->addRoute("productos","GET","ProductoController","getProductos");
 // $router->addRoute("tareas", "POST", "TareasApiController", "addTask");
 // $router->addRoute("tareas/:ID", "PUT", "TareasApiController", "updateTask");
 
+$router-> setDefaultRoute("HomeController", "getHome");
 
 // rutea
 $router->route($resource, $method);
-
