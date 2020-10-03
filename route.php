@@ -2,6 +2,7 @@
 require_once("Router.php");
 require_once("./Controllers/HomeController.php");
 require_once("./Controllers/ProductoController.php");
+require_once("./Controllers/LoginController.php");
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
@@ -17,11 +18,7 @@ $router = new Router();
 // arma la tabla de ruteo
 $router->addRoute("home","GET","HomeController","getHome");
 $router->addRoute("productos","GET","ProductoController","getProductos");
-// $router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
-// $router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
-// $router->addRoute("tareas/:ID", "DELETE", "TareasApiController", "deleteTask");
-// $router->addRoute("tareas", "POST", "TareasApiController", "addTask");
-// $router->addRoute("tareas/:ID", "PUT", "TareasApiController", "updateTask");
+$router->addRoute("login","GET","LoginController","getLogin");
 
 $router-> setDefaultRoute("HomeController", "getHome");
 

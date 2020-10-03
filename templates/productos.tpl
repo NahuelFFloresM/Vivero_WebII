@@ -37,6 +37,14 @@
     <div class="container">
         <section class="centrado">
             <div class="table-responsive">
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingresar producto..." aria-label="Buscar">
+                        <a class="btn btn-primary" href="#" role="button" id="buscarBtn" >
+                            Buscar
+                        </a>
+                    </form>
+                </nav>
                 <table class="table table-bordered tabla" id="tablita">
                     <thead class="tabla thead">
                         <tr>
@@ -55,7 +63,6 @@
                             <td>{$item->stock_producto}</td>
                         </tr>
                         {/foreach}
-                        
                     </tbody>
                 </table>
             </div>
