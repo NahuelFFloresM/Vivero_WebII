@@ -11,7 +11,7 @@
 
 <footer class="row no-gutters footer">
     <div class="col-sm-10 col-lg-11">
-        <p>elmundodeverymey.com &copy; 2019 - Tandil - Buenos Aires - Argentina</p>
+        <p>elmundodeverymey.com &copy; 2020 - Tandil - Buenos Aires - Argentina</p>
     </div>
     <div class="d-flex justify-content-end col-sm-2 col-lg-1">
         <a href="https://www.facebook.com/elmundodeverymey" target="_blank">
