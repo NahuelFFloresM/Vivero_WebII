@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2020-10-03 18:28:00
+/* Smarty version 3.1.33, created on 2020-10-03 22:53:24
   from 'C:\xampp\htdocs\web2tpe\templates\productos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5f78a6903f3898_90844577',
+  'unifunc' => 'content_5f78e4c4579403_42311784',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ff8a0ca75ee37ea021cd615f7605a8b2cc8ce22f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\productos.tpl',
-      1 => 1601726845,
+      1 => 1601758181,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5f78a6903f3898_90844577 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f78e4c4579403_42311784 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <body>
@@ -65,6 +65,14 @@ $_smarty_tpl->_subTemplateRender("file:head.tpl", $_smarty_tpl->cache_id, $_smar
     <div class="container">
         <section class="centrado">
             <div class="table-responsive">
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingresar producto..." aria-label="Buscar">
+                        <a class="btn btn-primary" href="#" role="button" id="buscarBtn" >
+                            Buscar
+                        </a>
+                    </form>
+                </nav>
                 <table class="table table-bordered tabla" id="tablita">
                     <thead class="tabla thead">
                         <tr>
@@ -94,7 +102,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        
                     </tbody>
                 </table>
             </div>

@@ -1,27 +1,4 @@
-<?php
-/* Smarty version 3.1.33, created on 2020-10-04 00:54:52
-  from 'C:\xampp\htdocs\web2tpe\templates\body_contacto.tpl' */
-
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.33',
-  'unifunc' => 'content_5f79013c46d561_72931569',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    'ce6ea04bdbd9bb8f5bd3bbb5c2266e2e35eec4d7' => 
-    array (
-      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\body_contacto.tpl',
-      1 => 1601758915,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-  ),
-),false)) {
-function content_5f79013c46d561_72931569 (Smarty_Internal_Template $_smarty_tpl) {
-?><article class=" container titleStyle">
+<article class=" container titleStyle">
     <h1>¿Estás pensando en comprar una Very Mëy?</h1>
     <h2>Dejame tu nombre, tu e-mail y contame que te interesa, y te responderé pronto!</h2>
 </article>
@@ -63,5 +40,3 @@ function content_5f79013c46d561_72931569 (Smarty_Internal_Template $_smarty_tpl)
         </div>
     </form>
 </div>
-<?php }
-}
