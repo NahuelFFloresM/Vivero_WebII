@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2020-10-03 21:59:56
-  from 'C:\xampp\htdocs\web2tpe\templates\body_info.tpl' */
+/* Smarty version 3.1.33, created on 2020-10-03 23:32:52
+  from 'D:\xampp\htdocs\Floreria\templates\body_info.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5f78d83c6736a4_46162508',
+  'unifunc' => 'content_5f78ee04ace760_82263602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '58713915e9920539312dea3f142dfd40ea1adde7' => 
+    'eaabeaa303deecb2654a0b392ae36380513025b7' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\body_info.tpl',
-      1 => 1601742017,
+      0 => 'D:\\xampp\\htdocs\\Floreria\\templates\\body_info.tpl',
+      1 => 1601760359,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f78d83c6736a4_46162508 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f78ee04ace760_82263602 (Smarty_Internal_Template $_smarty_tpl) {
 ?><section>
         <article>
             <h1 class="titleStyle">Todo lo que necesitas saber!</h1>

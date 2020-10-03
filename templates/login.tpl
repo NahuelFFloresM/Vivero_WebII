@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 bg-light text-dark rounded mt-5 mb-5">
-            <form>
+            <form action="loguser">
             <div class="form-group">
                 <label for="exampleInputEmail1">Direccion de Correo / Email</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@mail.com">
@@ -18,6 +18,9 @@
         </div>
     </div>
 </div>
+{if isset($errormsg)}
+	{$errormsg}
+{/if}
 </body>
 <div class="fixed-bottom">
 {include file="footer.tpl"}
