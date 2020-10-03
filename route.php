@@ -4,6 +4,7 @@ require_once("./Controllers/HomeController.php");
 require_once("./Controllers/ProductoController.php");
 require_once("./Controllers/InfoController.php");
 require_once("./Controllers/LoginController.php");
+require_once("./Controllers/ContactoController.php");
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
@@ -21,6 +22,7 @@ $router->addRoute("home","GET","HomeController","getHome");
 $router->addRoute("login","GET","LoginController","getLogin");
 $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
+$router->addRoute("contacto","GET","ContactoController","getContacto");
 
 // $router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
 // $router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
