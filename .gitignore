@@ -1,3 +1,4 @@
-template_c/**
-Bootstrap
+templates_c/**
+templates_c/
+Bootstrap/
 .gitattributes

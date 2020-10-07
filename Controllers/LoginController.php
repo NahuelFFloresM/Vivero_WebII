@@ -16,18 +16,27 @@ class LoginController {
         $this->view->DisplayLogin();
     }
 
+    public function getAdmin(){
+        $this->view->DisplayAdmin();
+    }
+
     public function verifyUser(){
         $useremail = $_POST['useremail'];
-        $password = $_POST['password'];
+        $password = $_POST['password'];        
 
         $user = $this->model->getUserByMail($useremail);
-
-        if (!empty($user) && password_verify($password,$user->password)){
+        if (!empty($user) && password_verify($password,$user->contraseña_usuario)){
             session_start();
             $_SESSION['id_user'] = $user->id;
             $_SESSION['username'] = $user->username;
-
-            header('Location: home');
+            // Chequear si la session esta iniciada con isset($_SESSION)
+            if($user->permisos == 0){
+                header("Location: ".URL_CONTACTO);
+                exit;
+            } else{
+                header("Location: ".URL_ADMIN);
+                exit;
+            }
         } else{
             $this->view->showLoginError('Login Incorrecto');
         }
