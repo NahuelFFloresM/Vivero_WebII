@@ -2,8 +2,12 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="css/imagenes/Logo Very Mëy.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-            El Mundo de Very Mëy </a>
+            El Mundo de Very Mëy 
+        </a>                    
     </nav>
+    {if isset($_SESSION['id_user'])}
+            {$_SESSION['username']}
+        {/if}
     <div class="container header ">
         <nav class="navbar navbar-expand-lg navbar-light bg-light header">
             <a class="navbar-brand" href="#"></a>

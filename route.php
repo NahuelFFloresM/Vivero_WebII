@@ -7,6 +7,9 @@ require_once("./Controllers/LoginController.php");
 require_once("./Controllers/ContactoController.php");
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
+define("URL_CONTACTO", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/contacto');
+define("URL_ADMIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
 
 // recurso solicitado
 $resource = $_GET["action"];
@@ -20,10 +23,11 @@ $router = new Router();
 // arma la tabla de ruteo
 $router->addRoute("home","GET","HomeController","getHome");
 $router->addRoute("login","GET","LoginController","getLogin");
+$router->addRoute("admin","GET","LoginController","getAdmin");
+$router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
-
 
 
 /*switch ($params[0]) {
@@ -37,13 +41,6 @@ $router->addRoute("contacto","GET","ContactoController","getContacto");
         echo('Página no encontrada');
         break;
 }*/
-
-
-// $router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
-// $router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
-// $router->addRoute("tareas/:ID", "DELETE", "TareasApiController", "deleteTask");
-// $router->addRoute("tareas", "POST", "TareasApiController", "addTask");
-// $router->addRoute("tareas/:ID", "PUT", "TareasApiController", "updateTask");
 
 $router-> setDefaultRoute("HomeController", "getHome");
 
