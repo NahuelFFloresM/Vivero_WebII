@@ -24,6 +24,21 @@ $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
 
+
+
+/*switch ($params[0]) {
+    case 'ver':
+        $controller = new ProductoController();
+        $id = $params[1];
+        $controller->mostrarDetalle($id);
+        break;
+    default:
+        header("HTTP/1.0 404 Not Found");
+        echo('Página no encontrada');
+        break;
+}*/
+
+
 // $router->addRoute("tareas", "GET", "TareasApiController", "getTareas");
 // $router->addRoute("tareas/:ID", "GET", "TareasApiController", "getTarea");
 // $router->addRoute("tareas/:ID", "DELETE", "TareasApiController", "deleteTask");

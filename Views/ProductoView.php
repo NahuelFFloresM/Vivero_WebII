@@ -25,6 +25,16 @@ class ProductoView {
         $smarty->assign('productos',$productos);
         $smarty->display('templates/productos.tpl');
     }
+
+    public function mostrarDetalle($producto){
+        $this->smarty->assign('producto', $producto);
+        $this->smarty->display('templates/detalle.tpl');
+    }
+
+    function showTask($task) {
+        
+    }
+
 }
 
 ?>

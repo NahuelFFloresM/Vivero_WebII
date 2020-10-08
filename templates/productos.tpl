@@ -38,31 +38,35 @@
         <section class="centrado">
             <div class="table-responsive">
                 <nav class="navbar navbar-light bg-light">
-                    <form class="form-inline">
+                   {* <form class="form-inline">
                         <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingresar producto..." aria-label="Buscar">
                         <a class="btn btn-primary" href="#" role="button" id="buscarBtn" >
                             Buscar
                         </a>
-                    </form>
+                    </form>*}
                 </nav>
                 <table class="table table-bordered tabla" id="tablita">
                     <thead class="tabla thead">
                         <tr>
                             <th scope="col">Producto</th>
-                            <th scope="col">Precio Minorista</th>
-                            <th scope="col">Precio Mayorista</th>
-                            <th scope="col">Cantidad Minima p/Mayoristas</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Mostrar</th>
                         </tr>
                     </thead>        
                     <tbody class="tabla-container">
-                        {foreach from=$productos item=item }                        
+                        {foreach from=$productos item=item }
                         <tr>
                             <td>{$item->nombre_producto}</td>
                             <td>{$item->precio_producto}</td>
-                            <td>{$item->precio_producto}</td>
                             <td>{$item->stock_producto}</td>
-                        </tr>
-                        {/foreach}
+                            <td>{$item->description_producto}</td> 
+                            <td> <div class='actions'>
+                                <button type="button" class="btn btn-secondary" href="ver/{$producto->id}">Ver</button>
+                            </div> </td>              
+                        </tr>   
+                        {/foreach} 
                     </tbody>
                 </table>
             </div>

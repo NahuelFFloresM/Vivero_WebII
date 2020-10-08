@@ -16,6 +16,18 @@ class ProductoController {
         $productos = $this->model->getProductos();
         $this->view->mostrarProductos($productos);
     }
+
+    /* Muestra el detalle del item */
+    function mostrarDetalle($id) {
+        $producto = $this->model->getProductoById($id);
+        if($producto) {
+            $this->view->mostrarProductoById($producto);
+        }
+        else {
+            $this->view->showError('Producto no encontrado!');
+        }
+    }
+
 }
 
 
