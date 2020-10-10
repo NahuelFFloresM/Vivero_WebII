@@ -27,14 +27,13 @@ class ProductoView {
     }
 
     public function mostrarDetalle($producto){
-        $this->smarty->assign('producto', $producto);
-        $this->smarty->display('templates/detalle.tpl');
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL',BASE_URL);
+        $smarty->assign('producto', $producto);
+        $smarty->display('templates/detalle.tpl');
     }
 
-    function showTask($task) {
-        
-    }
-
+    
 }
 
 ?>

@@ -26,21 +26,10 @@ $router->addRoute("login","GET","LoginController","getLogin");
 $router->addRoute("admin","GET","LoginController","getAdmin");
 $router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
-$router->addRoute("info","GET","InfoController","getInfo");
-$router->addRoute("contacto","GET","ContactoController","getContacto");
+//$router->addRoute("info","GET","InfoController","getInfo");
+//$router->addRoute("contacto","GET","ContactoController","getContacto");
+$router->addRoute("productos/detalle/:id","GET","ProductoController","mostrarDetalle");
 
-
-/*switch ($params[0]) {
-    case 'ver':
-        $controller = new ProductoController();
-        $id = $params[1];
-        $controller->mostrarDetalle($id);
-        break;
-    default:
-        header("HTTP/1.0 404 Not Found");
-        echo('Página no encontrada');
-        break;
-}*/
 
 $router-> setDefaultRoute("HomeController", "getHome");
 

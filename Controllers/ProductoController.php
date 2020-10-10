@@ -17,17 +17,18 @@ class ProductoController {
         $this->view->mostrarProductos($productos);
     }
 
-    /* Muestra el detalle del item */
-    function mostrarDetalle($id) {
-        $producto = $this->model->getProductoById($id);
+    function mostrarDetalle($params=null) {
+        $id = $params[':id'];
+        $producto = $this->model->mostrarDetalle($id);
         if($producto) {
-            $this->view->mostrarProductoById($producto);
+            $this->view->mostrarDetalle($producto);
         }
         else {
             $this->view->showError('Producto no encontrado!');
         }
     }
 
+   
 }
 
 

@@ -34,6 +34,7 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <section class="centrado">
             <div class="table-responsive">
@@ -62,15 +63,49 @@
                             <td>{$item->precio_producto}</td>
                             <td>{$item->stock_producto}</td>
                             <td>{$item->description_producto}</td> 
-                            <td> <div class='actions'>
-                                <button type="button" class="btn btn-secondary" href="ver/{$producto->id}">Ver</button>
-                            </div> </td>              
+                            <td> 
+                                <div class='actions'>
+                                <a href="productos/detalle/{$item->id_producto}" class="button">
+                                <button type="button" class="btn btn-secondary"> Ver </button>
+                                </a>
+                                </div> 
+                            </td>
                         </tr>   
                         {/foreach} 
                     </tbody>
                 </table>
             </div>
+        </div>
         </section>
     </div>
+
+    <h1>Productos por Categoría</h1>
+        
+    <ul>
+        <div class='actions'>
+            <a href="productos/categoria/Echeverias{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Echeverias </button>
+            </a>
+            <a href="productos/categoria/Suculentas{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Suculentas </button>
+            </a>
+            <a href="productos/categoria/Petunias{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Petunias Péndulas </button>
+            </a>
+            <a href="productos/categoria/Macetas{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Macetas y Accesorios </button>
+            </a>
+            <a href="productos/categoria/Sustratos{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Sustratos </button>
+            </a>
+            <a href="productos/categoria/Herramientas{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Herramientas </button>
+            </a>
+            <a href="productos/categoria/Organicos{$item->nombre_categoria}" class="button">
+            <button type="button" class="btn btn-secondary"> Órganicos </button>
+            </a>
+        </div> 
+    </ul>
+
 </body>
 {include file="footer.tpl"}
