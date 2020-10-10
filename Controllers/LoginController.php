@@ -1,5 +1,6 @@
 <?php
 require_once "./Models/LoginModel.php";
+require_once "./Models/ProductoModel.php";
 require_once "./Views/LoginView.php";
 
 class LoginController {
@@ -13,11 +14,16 @@ class LoginController {
     }
 
     public function getLogin(){
-        $this->view->DisplayLogin();
+        if (!isset($_SESSION)){
+            $this->view->DisplayLogin();
+        }
+        
     }
 
     public function getAdmin(){
-        $this->view->DisplayAdmin();
+        $producto = new ProductoModel();
+        $productos = $producto->getProductos();
+        $this->view->DisplayAdmin($productos);
     }
 
     public function verifyUser(){
@@ -27,8 +33,8 @@ class LoginController {
         $user = $this->model->getUserByMail($useremail);
         if (!empty($user) && password_verify($password,$user->contraseña_usuario)){
             session_start();
-            $_SESSION['id_user'] = $user->id;
-            $_SESSION['username'] = $user->username;
+            $_SESSION['user_id'] = $user->id_usuario;
+            $_SESSION['username'] = $user->nombre_usuario;
             // Chequear si la session esta iniciada con isset($_SESSION)
             if($user->permisos == 0){
                 header("Location: ".URL_CONTACTO);

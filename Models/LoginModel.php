@@ -9,12 +9,11 @@ class LoginModel {
     }
 
     public function getUserbyMail($useremail){
-        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE email_usuario=:email");
-        $sentencia->bindParam(":email", $useremail);
-        $sentencia->execute();
-        $productos = $sentencia->fetch(PDO::FETCH_OBJ);
+        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE email_usuario=?");
+        $sentencia->execute([$useremail]);
+        $user = $sentencia->fetch(PDO::FETCH_OBJ);
         
-        return $productos;
+        return $user;
     }
 }
 

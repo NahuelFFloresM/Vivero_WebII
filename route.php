@@ -28,6 +28,9 @@ $router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
+$router->addRoute("producto/:id","GET","ProductoController","getProductoById");
+$router->addRoute("editProducto/:id","GET","ProductoController","getProductoById");
+$router->addRoute("editProducto/:id","POST","ProductoController","editProducto");
 
 
 /*switch ($params[0]) {

@@ -5,7 +5,7 @@ require_once('libs/Smarty.class.php');
 class ProductoView {
 
     function __construct(){
-        
+    
     }
 
     public function DisplayHome() {
@@ -27,14 +27,20 @@ class ProductoView {
     }
 
     public function mostrarDetalle($producto){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL',BASE_URL);
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('templates/detalle.tpl');
     }
 
-    function showTask($task) {
-        
+    public function mostrarEditProducto($producto = [],$categorias = []){
+        $smarty = new Smarty();
+        $smarty->assign('BASE_URL',BASE_URL);
+        $smarty->assign('producto',$producto);
+        $smarty->assign('categorias',$categorias);
+        $smarty->assign('edit',true);
+        $smarty->display('templates/detalle.tpl');
     }
-
 }
 
 ?>

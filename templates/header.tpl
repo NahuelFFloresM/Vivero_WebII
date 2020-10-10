@@ -30,9 +30,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contacto">Contacto</a>
                     </li>
+                    {if isset($username)}
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+                    {else}
                     <li class="nav-item">
                         <a class="nav-link" href="login">Login</a>
                     </li>
+                    {/if}
                 </ul>
             </div>
         </nav>

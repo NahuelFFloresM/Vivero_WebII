@@ -7,7 +7,7 @@ class HomeModel {
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tareas;charset=utf8', 'root', '');
     }
-    
+    /*
 	public function GetTareas(){
         $sentencia = $this->db->prepare( "select * from tarea");
         $sentencia->execute();
@@ -57,7 +57,7 @@ class HomeModel {
     public function BorrarTarea($id){
         $sentencia = $this->db->prepare("DELETE FROM tarea WHERE id=?");
         $sentencia->execute(array($id));
-    }
+    }*/
 }
 
 ?>

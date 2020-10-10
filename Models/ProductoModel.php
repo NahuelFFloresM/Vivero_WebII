@@ -16,8 +16,16 @@ class ProductoModel {
         return $productos;
     }
 
-        function getProductoById($id) {
-        $sentencia = $this->db->prepare('SELECT * FROM producto WHERE id = ?');
+    public function getCategorias(){
+        $sentencia = $this->db->prepare( "SELECT * FROM categoria");
+        $sentencia->execute();
+        $categorias = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        
+        return $categorias;
+    }
+
+    public function getProductoById($id) {
+        $sentencia = $this->db->prepare('SELECT * FROM producto WHERE id_producto=?');
         $sentencia->execute([$id]);
         $producto = $sentencia->fetch(PDO::FETCH_OBJ);
         return $producto;
