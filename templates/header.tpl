@@ -3,11 +3,8 @@
         <a class="navbar-brand" href="#">
             <img src="css/imagenes/Logo Very Mëy.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
             El Mundo de Very Mëy 
-        </a>                    
+        </a>                   
     </nav>
-    {if isset($_SESSION['id_user'])}
-            {$_SESSION['username']}
-        {/if}
     <div class="container header ">
         <nav class="navbar navbar-expand-lg navbar-light bg-light header">
             <a class="navbar-brand" href="#"></a>
@@ -30,15 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contacto">Contacto</a>
                     </li>
-                    {if isset($username)}
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
-                    </li>
-                    {else}
                     <li class="nav-item">
                         <a class="nav-link" href="login">Login</a>
                     </li>
-                    {/if}
                 </ul>
             </div>
         </nav>

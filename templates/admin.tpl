@@ -23,10 +23,15 @@
                             <td>{$item->stock_producto}</td>
                             <td>{$item->description_producto}</td> 
                             <td>
-                                <div class='actions'>
+                                <div class='actions mb-1'>
                                     <a href="producto/{$item->id_producto}" class="button">
-                                        <button type="button" class="btn btn-secondary">Editar</button>
+                                        <button type="button" class="btn btn-success">Editar</button>
                                     </a>
+                                </div>
+                                <div class='actions mb-1'>
+                                    <form action="producto/{$item->id_producto}" method="DELETE">
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    <form>
                                 </div>
                             </td>
                         </tr>   

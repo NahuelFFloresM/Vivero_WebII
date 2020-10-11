@@ -10,14 +10,17 @@ class LoginController {
 
 	function __construct(){        
         $this->model = new LoginModel();
-        $this->view = new LoginView();
+        $this->view = new LoginView();        
     }
 
     public function getLogin(){
-        if (!isset($_SESSION)){
-            $this->view->DisplayLogin();
-        }
         
+        if (!isset($_SESSION['user_id'])){
+            $this->view->DisplayLogin();
+        } else{
+            header("Location: ".URL_HOME);
+            exit;
+        }
     }
 
     public function getAdmin(){
@@ -29,10 +32,9 @@ class LoginController {
     public function verifyUser(){
         $useremail = $_POST['useremail'];
         $password = $_POST['password'];        
-
+        session_start();
         $user = $this->model->getUserByMail($useremail);
         if (!empty($user) && password_verify($password,$user->contraseña_usuario)){
-            session_start();
             $_SESSION['user_id'] = $user->id_usuario;
             $_SESSION['username'] = $user->nombre_usuario;
             // Chequear si la session esta iniciada con isset($_SESSION)

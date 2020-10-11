@@ -7,6 +7,7 @@ require_once("./Controllers/LoginController.php");
 require_once("./Controllers/ContactoController.php");
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+define("URL_HOME", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/home');
 define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
 define("URL_CONTACTO", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/contacto');
 define("URL_ADMIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
@@ -29,6 +30,7 @@ $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
 $router->addRoute("producto/:id","GET","ProductoController","getProductoById");
+$router->addRoute("producto/:id","DELETE","ProductoController","deleteProducto");
 $router->addRoute("productos/detalle/:id","GET","ProductoController","mostrarDetalle");
 $router->addRoute("editProducto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("editProducto/:id","POST","ProductoController","editProducto");

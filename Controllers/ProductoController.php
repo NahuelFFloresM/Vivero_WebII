@@ -26,9 +26,24 @@ class ProductoController {
 
     public function editProducto($params = null){
         $id = $params[':id'];
-        //$this->model->editProductoById($id);
-        header("Location: " . URL_Admin);
-        
+        if($params != null){        
+            $this->model->editProducto($id);
+            header("Location: ".URL_ADMIN);
+        } else {
+            // armar eerror y mostrarlo
+            header("Location: ".URL_ADMIN);
+        }
+    }
+
+    public function deleteProducto($params = null){
+        $id = $params[':id'];
+        if($params != null){        
+            $this->model->deleteProducto($id);
+            header("Location: ".URL_ADMIN);
+        } else {
+            // armar error y mostrarlo
+            header("Location: ".URL_ADMIN);
+        }
     }
 
     function mostrarDetalle($params=null) {
