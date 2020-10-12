@@ -32,6 +32,19 @@ class ProductoModel {
         return $producto;
     }
 
+    public function nuevoProducto(){
+        $valores = array();
+        array_push($valores,$_POST['product_name'],$_POST['product_price'],$_POST['product_stock'],$_POST['product_description'],$_POST['id_categoria'],0);
+        $nombre = $_POST['product_name'];
+        $precio = $_POST['product_price'];
+        $stock = $_POST['product_stock'];
+        $description = $_POST['product_description'];
+        $idcat = $_POST['id_categoria'];
+        $sentencia = $this->db->prepare('INSERT INTO producto(nombre_producto,precio_producto,stock_producto,description_producto,id_categoria,destacado_producto)
+                                         VALUES(?,?,?,?,?,?)');        
+        return $sentencia->execute($valores);        
+    }
+
     public function editProducto($id){
         $nombre = $_POST['product_name'];
         $precio = $_POST['product_price'];
@@ -46,14 +59,16 @@ class ProductoModel {
     }
 
     public function deleteProducto($id){
-        $sentencia = $this->db->prepare('DELETE FROM producto WHERE id_prodcuto=?');
-        $sentencia->execute([$id]);
+        $sentencia = $this->db->prepare('DELETE FROM producto WHERE id_producto=?');
+        return $sentencia->execute([$id]);
     }
 
-    public function mostrarDetalle($id) {
-      $sentencia = $this->db->prepare('SELECT * FROM producto WHERE id_producto = ?');
-      $sentencia->execute([$id]);
-      return $sentencia->fetch(PDO::FETCH_OBJ);
+    public function getProductosPorCate($id){
+        $sentencia = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=?');
+        $sentencia->execute([$id]);
+        $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        
+        return $productos;
     }
 
     

@@ -7,12 +7,15 @@ class InfoView {
     private $smarty;
 
     function __construct(){
-        //$this->smarty = new Smarty;
+        session_start();
     }
 
     public function DisplayInfo() {
         $smarty = new Smarty();
         $smarty->assign('BASE_URL',BASE_URL);
+        if (isset($_SESSION['username'])){
+            $smarty->assign('logged',true);
+        }
         $smarty->display('templates/info.tpl');
     }
 

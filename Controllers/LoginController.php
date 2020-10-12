@@ -10,11 +10,10 @@ class LoginController {
 
 	function __construct(){        
         $this->model = new LoginModel();
-        $this->view = new LoginView();        
+        $this->view = new LoginView();
     }
 
-    public function getLogin(){
-        
+    public function getLogin(){        
         if (!isset($_SESSION['user_id'])){
             $this->view->DisplayLogin();
         } else{
@@ -23,16 +22,22 @@ class LoginController {
         }
     }
 
+    public function getLogout(){
+        session_destroy();
+        header("Location: ".URL_HOME);
+        exit;
+    }
+
     public function getAdmin(){
-        $producto = new ProductoModel();
-        $productos = $producto->getProductos();
-        $this->view->DisplayAdmin($productos);
+        $productoM = new ProductoModel();
+        $productos = $productoM->getProductos();
+        $categorias = $productoM->getCategorias();
+        $this->view->DisplayAdmin($productos,$categorias);
     }
 
     public function verifyUser(){
         $useremail = $_POST['useremail'];
-        $password = $_POST['password'];        
-        session_start();
+        $password = $_POST['password'];
         $user = $this->model->getUserByMail($useremail);
         if (!empty($user) && password_verify($password,$user->contraseña_usuario)){
             $_SESSION['user_id'] = $user->id_usuario;

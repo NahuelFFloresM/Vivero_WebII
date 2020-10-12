@@ -24,14 +24,17 @@ $router = new Router();
 // arma la tabla de ruteo
 $router->addRoute("home","GET","HomeController","getHome");
 $router->addRoute("login","GET","LoginController","getLogin");
+$router->addRoute("logout","GET","LoginController","getLogout");
 $router->addRoute("admin","GET","LoginController","getAdmin");
 $router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
+$router->addRoute("producto","POST","ProductoController","nuevoProducto");
 $router->addRoute("producto/:id","GET","ProductoController","getProductoById");
-$router->addRoute("producto/:id","DELETE","ProductoController","deleteProducto");
+$router->addRoute("producto/borrar/:id","POST","ProductoController","deleteProducto");
 $router->addRoute("productos/detalle/:id","GET","ProductoController","mostrarDetalle");
+$router->addRoute("productos/categoria/:id_categoria","GET","ProductoController","getProductoPorCategoria");
 $router->addRoute("editProducto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("editProducto/:id","POST","ProductoController","editProducto");
 

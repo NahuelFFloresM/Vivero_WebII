@@ -14,7 +14,8 @@ class ProductoController {
     /*Obtiene todos los productos y hace el display*/
     public function getProductos(){
         $productos = $this->model->getProductos();
-        $this->view->mostrarProductos($productos);
+        $categorias = $this->model->getCategorias();
+        $this->view->mostrarProductos($productos,$categorias);
     }
     /* Obtiene un producto por id y lo devuelve */
     public function getProductoById($params = null){
@@ -22,6 +23,11 @@ class ProductoController {
         $producto = $this->model->getProductoById($id);
         $categorias = $this->model->getCategorias();
         $vista = $this->view->mostrarEditProducto($producto,$categorias);
+    }
+
+    public function nuevoProducto(){
+        $status = $this->model->nuevoProducto();
+        header("Location: ".URL_ADMIN);
     }
 
     public function editProducto($params = null){
@@ -38,17 +44,24 @@ class ProductoController {
     public function deleteProducto($params = null){
         $id = $params[':id'];
         if($params != null){        
-            $this->model->deleteProducto($id);
+            $result = $this->model->deleteProducto($id);
             header("Location: ".URL_ADMIN);
         } else {
             // armar error y mostrarlo
             header("Location: ".URL_ADMIN);
         }
     }
+    
+    public function getProductoPorCategoria($params = null){
+        $id = $params[':id_categoria'];
+        $productos = $this->model->getProductosPorCate($id);
+        $categorias = $this->model->getCategorias();
+        $this->view->mostrarProductos($productos,$categorias);
+    }
 
     function mostrarDetalle($params=null) {
         $id = $params[':id'];
-        $producto = $this->model->mostrarDetalle($id);
+        $producto = $this->model->getProductoById($id);
         if($producto) {
             $this->view->mostrarDetalle($producto);
         }

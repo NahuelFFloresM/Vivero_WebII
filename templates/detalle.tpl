@@ -55,7 +55,7 @@
                         {if $item->id_categoria == $producto->id_categoria}
                             <option selected value="{$item->id_categoria}">{$item->nombre_categoria}</option>
                         {else}
-                            <option>{$item->nombre_categoria}</option>
+                            <option value="{$item->id_categoria}">{$item->nombre_categoria}</option>
                         {/if}
                     {/foreach}
                     </select>

@@ -5,13 +5,15 @@ require_once('libs/Smarty.class.php');
 class ProductoView {
 
     function __construct(){
-    
+        session_start();        
     }
 
     public function DisplayHome() {
-
         $smarty = new Smarty();
         $smarty->assign('BASE_URL',BASE_URL);
+        if (isset($_SESSION['username'])){
+            $smarty->assign('logged',true);
+        }
         $smarty->display('templates/productos.tpl');
     }
 
@@ -19,18 +21,25 @@ class ProductoView {
         echo $msg;
     }
 
-    public function mostrarProductos($productos){
+    public function mostrarProductos($productos,$categorias){
         $smarty = new Smarty();
         $smarty->assign('BASE_URL',BASE_URL);
         $smarty->assign('productos',$productos);
+        $smarty->assign('categorias',$categorias);
+        if (isset($_SESSION['username'])){
+            $smarty->assign('logged',true);
+        }
         $smarty->display('templates/productos.tpl');
     }
 
-    public function mostrarDetalle($producto){
+    public function mostrarDetalle($producto = []){
         $smarty = new Smarty();
         $smarty->assign('BASE_URL',BASE_URL);
-        $this->smarty->assign('producto', $producto);
-        $this->smarty->display('templates/detalle.tpl');
+        $smarty->assign('producto', $producto);
+        if (isset($_SESSION['username'])){
+            $smarty->assign('logged',true);
+        }
+        $smarty->display('templates/detalle.tpl');
     }
 
     public function mostrarEditProducto($producto = [],$categorias = []){
@@ -39,6 +48,9 @@ class ProductoView {
         $smarty->assign('producto',$producto);
         $smarty->assign('categorias',$categorias);
         $smarty->assign('edit',true);
+        if (isset($_SESSION['username'])){
+            $smarty->assign('logged',true);
+        }
         $smarty->display('templates/detalle.tpl');
     }
 }
