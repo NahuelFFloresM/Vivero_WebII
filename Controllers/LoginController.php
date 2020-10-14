@@ -29,10 +29,15 @@ class LoginController {
     }
 
     public function getAdmin(){
-        $productoM = new ProductoModel();
-        $productos = $productoM->getProductos();
-        $categorias = $productoM->getCategorias();
-        $this->view->DisplayAdmin($productos,$categorias);
+        if (isset($_SESSION['user_id'])){
+            $productoM = new ProductoModel();
+            $productos = $productoM->getProductos();
+            $categorias = $productoM->getCategorias();
+            $this->view->DisplayAdmin($productos,$categorias);
+        } else {
+            header("Location: ".URL_HOME);
+            die;
+        }
     }
 
     public function verifyUser(){

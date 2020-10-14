@@ -19,37 +19,63 @@ class ProductoController {
     }
     /* Obtiene un producto por id y lo devuelve */
     public function getProductoById($params = null){
-        $id = $params[':id'];
-        $producto = $this->model->getProductoById($id);
-        $categorias = $this->model->getCategorias();
-        $vista = $this->view->mostrarEditProducto($producto,$categorias);
+        if (isset($_SESSION['user_id'])){
+            $id = $params[':id'];
+            $producto = $this->model->getProductoById($id);
+            $categorias = $this->model->getCategorias();
+            $vista = $this->view->mostrarEditProducto($producto,$categorias);
+        } else{
+            header("Location: ".URL_HOME);
+            die;
+        }
     }
 
     public function nuevoProducto(){
-        $status = $this->model->nuevoProducto();
-        header("Location: ".URL_ADMIN);
+        if (isset($_SESSION['user_id'])){
+            $status = $this->model->nuevoProducto();
+            header("Location: ".URL_ADMIN);
+            die;
+        } else{
+            header("Location: ".URL_HOME);
+            die;
+        }
     }
 
     public function editProducto($params = null){
-        $id = $params[':id'];
-        if($params != null){        
-            $this->model->editProducto($id);
-            header("Location: ".URL_ADMIN);
-        } else {
-            // armar eerror y mostrarlo
-            header("Location: ".URL_ADMIN);
+        if (isset($_SESSION['user_id'])){
+            $id = $params[':id'];
+            if($params != null){        
+                $this->model->editProducto($id);
+                header("Location: ".URL_ADMIN);
+                die;
+            } else {
+                // armar eerror y mostrarlo
+                header("Location: ".URL_ADMIN);
+                die;
+            }
+        } else{
+            header("Location: ".URL_HOME);
+            die;
         }
     }
 
     public function deleteProducto($params = null){
-        $id = $params[':id'];
-        if($params != null){        
-            $result = $this->model->deleteProducto($id);
-            header("Location: ".URL_ADMIN);
-        } else {
-            // armar error y mostrarlo
-            header("Location: ".URL_ADMIN);
+        if (isset($_SESSION['user_id'])){
+            $id = $params[':id'];
+            if($params != null){        
+                $result = $this->model->deleteProducto($id);
+                header("Location: ".URL_ADMIN);
+                die;
+            } else {
+                // armar error y mostrarlo
+                header("Location: ".URL_ADMIN);
+                die;
+            }
+        } else{
+            header("Location: ".URL_HOME);
+            die;
         }
+
     }
     
     public function getProductoPorCategoria($params = null){
