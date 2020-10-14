@@ -11,9 +11,11 @@ class LoginController {
 	function __construct(){        
         $this->model = new LoginModel();
         $this->view = new LoginView();
+        session_start();
+
     }
 
-    public function getLogin(){        
+    public function getLogin(){    
         if (!isset($_SESSION['user_id'])){
             $this->view->DisplayLogin();
         } else{
@@ -55,7 +57,7 @@ class LoginController {
                 header("Location: ".URL_ADMIN);
                 exit;
             }
-        } else{
+        } else {
             $this->view->showLoginError('Login Incorrecto');
         }
     }

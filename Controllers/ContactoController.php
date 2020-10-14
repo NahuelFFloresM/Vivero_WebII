@@ -9,6 +9,8 @@ class ContactoController {
 
     function __construct(){
         $this->view = new ContactoView();
+        session_start();
+
     }
 
     public function getContacto(){

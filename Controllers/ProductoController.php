@@ -10,6 +10,7 @@ class ProductoController {
 	function __construct(){        
         $this->model = new ProductoModel();
         $this->view = new ProductoView();
+        session_start();
     }
     /*Obtiene todos los productos y hace el display*/
     public function getProductos(){

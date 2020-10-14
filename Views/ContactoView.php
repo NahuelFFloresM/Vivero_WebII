@@ -7,7 +7,6 @@ class ContactoView {
     private $smarty;
 
     function __construct(){
-        session_start();
     }
 
     public function DisplayContacto() {

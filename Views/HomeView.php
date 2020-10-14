@@ -5,7 +5,6 @@ require_once('libs/Smarty.class.php');
 class HomeView {
 
     function __construct(){
-        session_start();
     }
 
     public function DisplayHome() {

@@ -9,6 +9,8 @@ class InfoController {
 
     function __construct(){
         $this->view = new InfoView();
+        session_start();
+
     }
 
     public function getInfo(){

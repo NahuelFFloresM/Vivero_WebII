@@ -11,6 +11,8 @@ class HomeController {
         
         // $this->model = new HomeModel();
         $this->view = new HomeView();
+        session_start();
+
     }
     
     public function checkLogIn(){

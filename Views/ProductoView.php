@@ -5,7 +5,7 @@ require_once('libs/Smarty.class.php');
 class ProductoView {
 
     function __construct(){
-        session_start();        
+        
     }
 
     public function DisplayHome() {
