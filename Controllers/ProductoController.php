@@ -6,21 +6,29 @@ class ProductoController {
 
     private $model;
     private $view;
+    private $sesion;
 
 	function __construct(){        
         $this->model = new ProductoModel();
         $this->view = new ProductoView();
         session_start();
+        if(isset($_SESSION["user_id"])){
+            $this->sesion =true;
+            }  else {
+              $this->sesion=false;
+        }
     }
+
     /*Obtiene todos los productos y hace el display*/
     public function getProductos(){
         $productos = $this->model->getProductos();
         $categorias = $this->model->getCategorias();
         $this->view->mostrarProductos($productos,$categorias);
     }
+
     /* Obtiene un producto por id y lo devuelve */
     public function getProductoById($params = null){
-        if (isset($_SESSION['user_id'])){
+        if ($this->sesion){
             $id = $params[':id'];
             $producto = $this->model->getProductoById($id);
             $categorias = $this->model->getCategorias();
@@ -32,7 +40,7 @@ class ProductoController {
     }
 
     public function nuevoProducto(){
-        if (isset($_SESSION['user_id'])){
+        if ($this->sesion){
             $status = $this->model->nuevoProducto();
             header("Location: ".URL_ADMIN);
             die;
@@ -43,14 +51,14 @@ class ProductoController {
     }
 
     public function editProducto($params = null){
-        if (isset($_SESSION['user_id'])){
+        if ($this->sesion){
             $id = $params[':id'];
             if($params != null){        
                 $this->model->editProducto($id);
                 header("Location: ".URL_ADMIN);
                 die;
             } else {
-                // armar eerror y mostrarlo
+                // armar error y mostrarlo
                 header("Location: ".URL_ADMIN);
                 die;
             }
@@ -61,7 +69,7 @@ class ProductoController {
     }
 
     public function deleteProducto($params = null){
-        if (isset($_SESSION['user_id'])){
+        if ($this->sesion){
             $id = $params[':id'];
             if($params != null){        
                 $result = $this->model->deleteProducto($id);
