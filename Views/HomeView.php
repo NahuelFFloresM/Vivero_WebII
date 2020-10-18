@@ -3,18 +3,19 @@
 require_once('libs/Smarty.class.php');
 
 class HomeView {
+    
+    private $smarty; 
 
     function __construct(){
+        $this->smarty = new Smarty();
+        $this->smarty->assign('BASE_URL',BASE_URL);
     }
 
     public function DisplayHome() {
-
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL',BASE_URL);
         if (isset($_SESSION['username'])){
-            $smarty->assign('logged',true);
+            $this->smarty->assign('logged',true);
         }
-        $smarty->display('templates/home.tpl');
+        $this->smarty->display('templates/home.tpl');
     }
     
     public function showError($msg) {

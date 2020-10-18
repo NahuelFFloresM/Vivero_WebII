@@ -4,35 +4,33 @@ require_once('libs/Smarty.class.php');
 
 class LoginView {
 
+    private $smarty; 
+
     function __construct(){
+        $this->smarty = new Smarty();
+        $this->smarty->assign('BASE_URL',BASE_URL);
     }
 
     public function DisplayLogin() {
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL',BASE_URL);
         if (isset($_SESSION['username'])){
-            $smarty->assign('logged',true);
+            $this->smarty->assign('logged',true);
         }
-        $smarty->display('templates/login.tpl');
+        $this->smarty->display('templates/login.tpl');
     }
 
     public function DisplayAdmin($productos,$categorias) {
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL',BASE_URL);
-        $smarty->assign('productos',$productos);
-        $smarty->assign('categorias',$categorias);
-        $smarty->assign('logged',true);
-        $smarty->display('templates/admin.tpl');
+        $this->smarty->assign('productos',$productos);
+        $this->smarty->assign('categorias',$categorias);
+        $this->smarty->assign('logged',true);
+        $this->smarty->display('templates/admin.tpl');
     }
 
     public function showLoginError($msg) {
-        $smarty = new Smarty();
-        $smarty->assign('BASE_URL',BASE_URL);
         if (isset($_SESSION['username'])){
-            $smarty->assign('logged',true);
+            $this->smarty->assign('logged',true);
         }
-        $smarty->assign('error',$msg);
-        $smarty->display('templates/login.tpl');
+        $this->smarty->assign('error',$msg);
+        $this->smarty->display('templates/login.tpl');
     }
 
     public function showError($msg) {
