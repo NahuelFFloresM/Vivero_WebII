@@ -36,8 +36,10 @@ $router->addRoute("producto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("producto/borrar/:id","POST","ProductoController","deleteProducto");
 $router->addRoute("productos/detalle/:id","GET","ProductoController","mostrarDetalle");
 $router->addRoute("productos/categoria/:id_categoria","GET","ProductoController","getProductoPorCategoria");
+$router->addRoute("categoria","POST","CategoriaController","nuevaCategoria");
 $router->addRoute("editCategoria/:id","GET","CategoriaController","getCategoriaById");
 $router->addRoute("editCategoria/:id","POST","CategoriaController","editCategoria");
+$router->addRoute("editCategoria/borrar/:id","POST","CategoriaController","deleteCategoria");
 $router->addRoute("editProducto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("editProducto/:id","POST","ProductoController","editProducto");
 
