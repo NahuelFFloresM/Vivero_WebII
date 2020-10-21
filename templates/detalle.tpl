@@ -25,7 +25,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="{BASE_URL}productos/">Volver</a>
+                <a href="{BASE_URL}productos/">
+                    <button class="btn btn-info" type="button">Volver</button>
+                </a>
             </div>
         </section>
     </div>

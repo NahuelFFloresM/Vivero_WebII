@@ -12,11 +12,13 @@ class ProductoController {
         $this->model = new ProductoModel();
         $this->view = new ProductoView();
         session_start();
+        verifySession();
+    }
+    function verifySession(){
         if(isset($_SESSION["user_id"])){
-            $this->sesion =true;
-            }  else {
-              $this->sesion=false;
+            return false;
         }
+        return true;
     }
 
     /*Obtiene todos los productos y hace el display*/
@@ -28,7 +30,7 @@ class ProductoController {
 
     /* Obtiene un producto por id y lo devuelve */
     public function getProductoById($params = null){
-        if ($this->sesion){
+        if (verifySession()){
             $id = $params[':id'];
             $producto = $this->model->getProductoById($id);
             $categorias = $this->model->getCategorias();
@@ -40,7 +42,7 @@ class ProductoController {
     }
 
     public function nuevoProducto(){
-        if ($this->sesion){
+        if (verifySession()){
             $status = $this->model->nuevoProducto();
             header("Location: ".URL_ADMIN);
             die;
@@ -51,7 +53,7 @@ class ProductoController {
     }
 
     public function editProducto($params = null){
-        if ($this->sesion){
+        if (verifySession()){
             $id = $params[':id'];
             if($params != null){        
                 $this->model->editProducto($id);
@@ -69,7 +71,7 @@ class ProductoController {
     }
 
     public function deleteProducto($params = null){
-        if ($this->sesion){
+        if (verifySession()){
             $id = $params[':id'];
             if($params != null){        
                 $result = $this->model->deleteProducto($id);
