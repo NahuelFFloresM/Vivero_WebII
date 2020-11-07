@@ -25,6 +25,8 @@ $router = new Router();
 // arma la tabla de ruteo
 $router->addRoute("home","GET","HomeController","getHome");
 $router->addRoute("login","GET","LoginController","getLogin");
+$router->addRoute("register","GET","LoginController","getRegister");
+$router->addRoute("registeruser","POST","LoginController","registrarUser");
 $router->addRoute("logout","GET","LoginController","getLogout");
 $router->addRoute("admin","GET","LoginController","getAdmin");
 $router->addRoute("loguser","POST","LoginController","verifyUser");

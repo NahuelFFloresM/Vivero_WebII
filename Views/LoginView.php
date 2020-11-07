@@ -12,9 +12,12 @@ class LoginView {
     }
 
     public function DisplayLogin() {
-        if (isset($_SESSION['username'])){
-            $this->smarty->assign('logged',true);
-        }
+        $this->smarty->assign('login',true);
+        $this->smarty->display('templates/login.tpl');
+    }
+
+    public function DisplayRegister() {
+        $this->smarty->assign('register',true);
         $this->smarty->display('templates/login.tpl');
     }
 
@@ -32,6 +35,8 @@ class LoginView {
         $this->smarty->assign('error',$msg);
         $this->smarty->display('templates/login.tpl');
     }
+
+    
 
     public function showError($msg) {
         echo $msg;

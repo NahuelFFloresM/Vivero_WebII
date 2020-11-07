@@ -1,6 +1,6 @@
 <?php
 
-class ProductoModel {
+class ComentarioModel {
 
     private $db;
 
@@ -8,12 +8,12 @@ class ProductoModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_vivero;charset=utf8', 'root', '');
     }
     
-	public function getProductos(){
-        $sentencia = $this->db->prepare( "SELECT * FROM producto");
+	public function getComentarios(){
+        $sentencia = $this->db->prepare( "SELECT * FROM comentarios as c,usuario as u WHERE c.id_usuroo=u.id_usuario");
         $sentencia->execute();
-        $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
-        return $productos;
+        return $comentarios;
     }
 
     public function getCategorias(){

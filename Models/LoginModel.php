@@ -15,6 +15,14 @@ class LoginModel {
         
         return $user;
     }
+
+    public function registrarUser($nombre,$email,$password){
+        $sentencia = $this->db->prepare("INSERT INTO usuario(nombre_usuario,email_usuario,contrasenia_usuario,permisos) VALUES(?,?,?,?)");
+        $sentencia->execute([$nombre,$email,$password,0]);
+        $user = $sentencia->fetch(PDO::FETCH_OBJ);
+        
+        return $user;
+    }
 }
 
 ?>

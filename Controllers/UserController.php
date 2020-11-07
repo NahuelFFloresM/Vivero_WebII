@@ -1,16 +1,15 @@
 <?php
-require_once "./Models/LoginModel.php";
-require_once "./Models/ProductoModel.php";
-require_once "./Views/LoginView.php";
+require_once "./Models/UserModel.php";
+require_once "./Views/UserView.php";
 
-class LoginController {
+class UserController {
 
     private $model;
     private $view;
 
 	function __construct(){        
-        $this->model = new LoginModel();
-        $this->view = new LoginView();
+        $this->model = new UserModel();
+        $this->view = new UserView();
         session_start();
     }
 
@@ -21,13 +20,6 @@ class LoginController {
         return true;
     }
 
-    private function isAdmin(){
-        if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
-            return true;
-        }
-        return false;
-    }
-
     public function getLogin(){
         if (!$this->verifySession()){
             $this->view->DisplayLogin();
@@ -35,6 +27,13 @@ class LoginController {
             header("Location: ".URL_HOME);
             exit;
         }
+    }
+
+    private function isAdmin(){
+        if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+            return true;
+        }
+        return false;
     }
 
     public function getRegister(){
@@ -66,7 +65,7 @@ class LoginController {
     }
 
     public function getAdmin(){
-        if ($this->verifySession() && $this->isAdmin()){
+        if ($this->verifySession()){
             $productoM = new ProductoModel();
             $productos = $productoM->getProductos();
             $categorias = $productoM->getCategorias();
@@ -84,7 +83,6 @@ class LoginController {
         if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
             $_SESSION['user_id'] = $user->id_usuario;
             $_SESSION['username'] = $user->nombre_usuario;
-            $_SESSION['permisos'] = $user->permisos;
             // Chequear si la session esta iniciada con isset($_SESSION)
             if($user->permisos == 0){
                 header("Location: ".URL_CONTACTO);

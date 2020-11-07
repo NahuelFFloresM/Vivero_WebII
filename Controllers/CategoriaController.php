@@ -11,7 +11,7 @@ class CategoriaController {
         $this->model = new CategoriaModel();
         $this->view = new CategoriaView();
         session_start();
-        verifySession();
+        $this->verifySession();
     }
 
     function verifySession(){
@@ -20,6 +20,7 @@ class CategoriaController {
         }
         return true;
     }
+    
 
 
     public function getCategorias(){

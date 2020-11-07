@@ -84,12 +84,13 @@
 <div class="container centrado ">
     <button type="button" class="btn btn-primary ml-2 mr-2" id="toggleProducto" onclick="mostrarProductos()">Productos</button>
     <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria" onclick="mostrarCategorias()">Categorias</button>
+    <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria" onclick="mostrarUsuarios()">Usuarios</button>
 </div>
 <div class="container">
     <div class="row mt-4">
         <section id="tablaProductos" class="centrado">
             <div class="table-responsive">
-                <table class="table table-bordered tabla" id="tablita">
+                <table class="table table-bordered tabla" id="table-container-productos">
                     <thead class="tabla thead">
                         <tr>
                             <th scope="col">Producto</th>
@@ -126,7 +127,7 @@
         </section>
         <section id="tablaCategorias" class="centrado display-none">
             <div class="table-responsive">
-                <table class="table table-bordered tabla" id="tablita">
+                <table class="table table-bordered tabla" id="table-container-categorias">
                     <thead class="tabla thead">
                         <tr>
                             <th scope="col">Nombre Categoria</th>
@@ -135,28 +136,59 @@
                         </tr>
                     </thead>        
                     <tbody class="tabla-container">
-                        {foreach from=$categorias item=item }
-                        <tr>
-                            <td>{$item->nombre_categoria}</td>
-                            <td>{$item->descripcion_categoria}</td>
-                            <td>
-                                <div class='actions mb-1'>
-                                    <a href="editCategoria/{$item->id_categoria}" class="button">
-                                        <button type="button" class="btn btn-success">Editar</button>
-                                    </a>
-                                </div>
-                                <div class='actions mb-1'>
-                                    <form action="editCategoria/borrar/{$item->id_categoria}" method="POST">
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>   
-                        {/foreach} 
                     </tbody>
                 </table>
             </div>
         </section>
+        <section id="tablaUsuarios" class="centrado display-none">
+            <div class="table-responsive">
+                <table class="table table-bordered tabla" id="table-container-usuarios">
+                    <thead class="tabla thead">
+                        <tr>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Permisos</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla-container">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div id="editUserContainer" class="display-none mb-5">
+            <form class="mt-5 ml-4" action="user/edit/" id="usereditform" method="POST">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltipuser">Nombre Usuario</label>
+                        <input name="nombre_user" type="text" class="form-control" id="validationTooltipuser" placeholder="Nombre Usuario" value="" required>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltipemail">Email</label>
+                        <input name="email_user" type="text" class="form-control" id="validationTooltipemail" placeholder="Email" value="" required>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltippermiso">Permisos</label>
+                        <select name="permiso" class="form-control" id="permiso_select">
+                            <option value="0">PUBLICO</option>
+                            <option value="1">ADMIN</option>
+                        </select>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <input name="id_user" id="id_user" type="number" class="display-none" value="">
+                </div>
+                <button class="btn btn-success" type="submit">Editar</button>
+                <button class="btn btn-dark" type="button" onclick="cancelEdit()">Cancelar</button>
+            </form>
+        </div>
     </div>
 </div>
 <script src="js/admin.js" crossorigin="anonymous">
