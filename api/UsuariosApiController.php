@@ -8,11 +8,15 @@ class UsuariosApiController extends ApiController{
     private $model;
   
     public function __construct() {
+        parent::__construct();
         $this->model = new UserModel();
         session_start();
     }
 
     private function verifySession(){
+        if(!isset($_SESSION["user_id"])){
+            return false;
+        }
         return true;
     }
 
@@ -27,7 +31,7 @@ class UsuariosApiController extends ApiController{
     public function getUsers(){
         if ($this->isAdmin()){
             $users = $this->model->getUsers();
-            echo json_encode($users);
+            $this->view->response($users,200);
         } else{
             header("Location: ".URL_HOME);
             die;
@@ -38,7 +42,8 @@ class UsuariosApiController extends ApiController{
         if ($this->isAdmin()){
             $id = $params[':ID'];
             $users = $this->model->getUserById($id);
-            echo json_encode($users);
+            //echo json_encode($users);
+            $this->view->response($users,200);
         } else{
             header("Location: ".URL_HOME);
             die;
@@ -49,5 +54,18 @@ class UsuariosApiController extends ApiController{
         $decoded = json_decode(file_get_contents("php://input"));
         $result = $this->model->editUserById($decoded->nombre_user,$decoded->email_user,$decoded->permiso,$decoded->id_user);
         echo json_encode($result);
+    }
+
+    public function deleteUser($params){
+        if ($this->isAdmin()){
+            $id = $params[':ID'];
+            $user = $this->model->deleteUser($id);
+            $this->view->response($user,200);
+        } else{
+            header("Location: ".URL_HOME);
+            die;
+        }
+        
+
     }
 }

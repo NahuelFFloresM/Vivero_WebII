@@ -25,6 +25,7 @@ $router->addRoute("categorias/","GET","CategoriasApiController","getCategorias")
 $router->addRoute("usuarios/","GET","UsuariosApiController","getUsers");
 $router->addRoute("usuarios/:ID","GET","UsuariosApiController","getUserById");
 $router->addRoute("usuarios/:ID","PUT","UsuariosApiController","editUserById");
+$router->addRoute("usuarios/:ID","DELETE","UsuariosApiController","deleteUser");
 
 
 // rutea

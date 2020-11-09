@@ -13,6 +13,9 @@ class ComentariosApiController extends ApiController{
     }
 
     private function isAdmin(){
+        if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+            return true;
+        }
         return false;
     }
 
@@ -41,70 +44,6 @@ class ComentariosApiController extends ApiController{
         } else {
             $this->view->response([],400);
         }
-    }
-    /**
-     * Obtiene una tarea dado un ID
-     * 
-     * $params arreglo asociativo con los parámetros del recurso
-     */
-    public function getTarea($params = null) {
-        // obtiene el parametro de la ruta
-        $id = $params[':ID'];
-        
-        $tarea = $this->model->GetTarea($id);
-        
-        if ($tarea) {
-            $this->view->response($tarea, 200);   
-        } else {
-            $this->view->response("No existe la tarea con el id={$id}", 404);
-        }
-    }
-
-    // TareasApiController.php
-    public function deleteTask($params = []) {
-        $task_id = $params[':ID'];
-        $task = $this->model->GetTarea($task_id);
-
-        if ($task) {
-            $this->model->BorrarTarea($task_id);
-            $this->view->response("Tarea id=$task_id eliminada con éxito", 200);
-        }
-        else 
-            $this->view->response("Task id=$task_id not found", 404);
-    }
-
-    // TareaApiController.php
-   public function addTask($params = []) {     
-        $tarea = $this->getData(); // la obtengo del body
-
-        // inserta la tarea
-        $tareaId = $this->model->InsertarTarea($tarea->titulo, $tarea->descripcion,$tarea->prioridad, 0);
-
-        // obtengo la recien creada
-        $tareaNueva = $this->model->GetTarea($tareaId);
-        
-        if ($tareaNueva)
-            $this->view->response($tareaNueva, 200);
-        else
-            $this->view->response("Error al insertar tarea", 500);
-
-    }
-
-    // TaskApiController.php
-    public function updateTask($params = []) {
-        $task_id = $params[':ID'];
-        $task = $this->model->GetTarea($task_id);
-
-        if ($task) {
-            $body = $this->getData();
-            $titulo = $body->titulo;
-            $descripcion = $body->descripcion;
-            $prioridad = $body->prioridad;
-            $tarea = $this->model->ActualizarTarea($task_id, $titulo, $descripcion, $prioridad);
-            $this->view->response("Tarea id=$task_id actualizada con éxito", 200);
-        }
-        else 
-            $this->view->response("Task id=$task_id not found", 404);
     }
 
 

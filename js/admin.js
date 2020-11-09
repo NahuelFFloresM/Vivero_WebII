@@ -2,11 +2,8 @@ document.addEventListener("DOMContentLoaded", function(){
        document.getElementById('editUserContainer').addEventListener('submit',function(event){
             event.preventDefault();
             let id_user = document.getElementById('id_user');
-            let form = document.getElementById('usereditform');
-            let formData = new FormData(form);
             let bodyData = {};
             for(var pair of formData.entries()) {
-                console.log(pair[0]+ ', '+ pair[1]);
                 bodyData[pair[0]] = pair[1];
              }
             fetch(`api/usuarios/${id_user}`, {
@@ -20,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function(){
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data);
+                mostrarUsuarios();
+                cancelEdit();
             });
        });
 });
@@ -132,9 +130,7 @@ function mostrarUsuarios(){
                         <button type="button" class="btn btn-success" onclick="editUser(${element.id_usuario})">Editar</button>
                     </div>
                     <div class='actions mb-1'>
-                        <form action="editUser/borrar/${element.id_usuario}" method="POST">
-                            <button type="submit" class="btn btn-danger">Borrar</button>
-                        </form>
+                        <button type="button" class="btn btn-danger" onclick="deleteUser(${element.id_usuario})">Borrar</button>
                     </div>
                 </td>
             </tr>`
@@ -168,4 +164,16 @@ function editUser(id){
 function cancelEdit(){
     document.getElementById('tablaUsuarios').style.display = 'block';
     document.getElementById('editUserContainer').style.display = 'none';
+}
+
+function deleteUser(id){
+    fetch(`api/usuarios/${id}`, {
+        "method": "DELETE",
+        "mode":"cors",
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Armar respuesta en caso de mostrar mensaje de error
+        mostrarUsuarios();
+    });
 }

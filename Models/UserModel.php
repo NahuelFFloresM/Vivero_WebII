@@ -30,4 +30,10 @@ class UserModel {
         WHERE id_usuario=?;');
         return $sentencia->execute([$nombre,$email,$permiso,$id]);
     }
+
+    public function deleteUser($id){
+        $sentencia = $this->db->prepare('DELETE FROM usuario WHERE id_usuario = ?');
+        $response = $sentencia->execute([$id]);
+        return $response;
+    }
 }
