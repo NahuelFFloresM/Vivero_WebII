@@ -1,10 +1,14 @@
 <?php
 require_once("./api/ApiController.php");
 require_once("./api/JSONView.php");
+require_once ("./Models/ComentarioModel.php");
 
 class ComentariosApiController extends ApiController{
+
+    private $model;
   
     public function __construct() {
+        $this->model = new ComentariosModel();
         session_start();
     }
 
@@ -19,21 +23,21 @@ class ComentariosApiController extends ApiController{
         return false;
     }
 
-    public function getComentarios() {
-        $comentarios = $this->model->getComentarios();
-        $this->view->response($tareas, 200);
+    public function getComentarios($params =null) {
+        $comentarios = $this->model->getComentarios($params[0]);
+        if($comentario ==true){
+            return $this->response($comentario, 200);
+        }
+        else{
+            return $this->response(null, 404);
+        }
     }
 
-    public function nuevoComentario($params = null){
-        if ($params != null){
-            $comentario = $_POST['comentario'];
-            $user = $_POST['user_id'];
-            $puntuacion = $_POST['puntuacion'];
-            $respuesta = $this->model->borrarComentario($id_comentario);
-            $this->view->response($respuesta,200);
-        } else {
-            $this->view->response([],400);
-        }
+    public function agregarComentario($params = null){
+        $array = $this->getData();
+        $respuesta = $this->model->agregarComentario($array->comentario, $array->puntuacion, $array->id_producto, $array->id_usuario);
+        
+        return $this->view->response($respuesta,200);
     }
 
     public function borrarComentario($params = null){
@@ -42,7 +46,7 @@ class ComentariosApiController extends ApiController{
             $respuesta = $this->model->borrarComentario($id_comentario);
             $this->view->response($respuesta,200);
         } else {
-            $this->view->response([],400);
+            $this->view->response("El comentario no existe",404);
         }
     }
 
