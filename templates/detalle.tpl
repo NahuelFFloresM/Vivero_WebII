@@ -25,12 +25,48 @@
                         </tr>
                     </tbody>
                 </table>
+
+                
+                <form method="POST" action="#" class="text-center">
+                    <h2>Comentarios y Puntuación del Producto</h2>
+                    
+                    <!-- Comentario -->
+                    <div class="form-group"> 
+                        <label for="comentario">Dejá aquí tu Comentario:</label>
+                        <textarea class="form-control" rows="5" name="commentText" id="commentText" placeholder="Comentario..."></textarea>
+                    </div>
+
+                    <!-- Puntuación para el Producto -->
+                    <h3>Puntuación del Producto</h2>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                        <label class="form-check-label" for="inlineRadio4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+                        <label class="form-check-label" for="inlineRadio5">5</label>
+                    </div>
+                    
+                    <button type="submit" id="submitComment" class="btn btn-primary">Enviar Comentario</button>
+                </form>
                 <a href="{BASE_URL}productos/">
                     <button class="btn btn-info" type="button">Volver</button>
                 </a>
             </div>
         </section>
-    </div>
+    </div>    
 {else}
     <div class="container">
         <h2 class="mt-5 ml-5">Editar Producto</h2>
