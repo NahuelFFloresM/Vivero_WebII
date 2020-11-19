@@ -52,6 +52,7 @@ class UsuariosApiController extends ApiController{
 
     public function editUserById(){
         $decoded = json_decode(file_get_contents("php://input"));
+        // $body = $this->getData();
         $result = $this->model->editUserById($decoded->nombre_user,$decoded->email_user,$decoded->permiso,$decoded->id_user);
         echo json_encode($result);
     }

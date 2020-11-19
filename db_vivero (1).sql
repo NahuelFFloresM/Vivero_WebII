@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_vivero`
 --
-
+CREATE DATABASE IF NOT EXISTS `db_vivero` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `db_vivero`;
 -- --------------------------------------------------------
 
 --
@@ -117,7 +118,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `email_usuario`, `contrasenia_usuario`, `permisos`) VALUES
-(1, 'Mercedes', 'mercedesvfonseca@gmail.com', '$2y$12$apXIn2TtbeQSlsRTJFPsVe/KeKxvZ7yMAExfXj7a2dPy74I9JSyq6', '1');
+(1, 'admin', 'admin@gmail.com', '$2y$12$PrWS5xwbuGyG6n7IUl5tQevfaw5K1FmhF.XrhKKyWlrlH9CEe42IS', '1');
 
 --
 -- Índices para tablas volcadas

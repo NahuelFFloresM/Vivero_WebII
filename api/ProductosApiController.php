@@ -8,6 +8,7 @@ class ProductosApiController extends ApiController{
     private $model;
   
     public function __construct() {
+        parent::__construct();
         $this->model = new ProductoModel();
         session_start();
     }
@@ -22,6 +23,7 @@ class ProductosApiController extends ApiController{
 
     public function getProductos() {
         $productos = $this->model->getProductos();
-        echo json_encode($productos);
+        $this->view->response($productos,200);
+        //echo json_encode($productos);
     }
 }

@@ -81,10 +81,12 @@
         </div>
     </div>
 </div>
+<!-- SECCION BOTONES PARA CARGAR TABLAS-->
 <div class="container centrado ">
     <button type="button" class="btn btn-primary ml-2 mr-2" id="toggleProducto" onclick="mostrarProductos()">Productos</button>
     <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria" onclick="mostrarCategorias()">Categorias</button>
     <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria" onclick="mostrarUsuarios()">Usuarios</button>
+    <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria" onclick="mostrarComentarios()">Comentarios</button>
 </div>
 <div class="container">
     <div class="row mt-4">
@@ -140,7 +142,7 @@
                 </table>
             </div>
         </section>
-        <section id="tablaUsuarios" class="centrado display-none">
+        <section id="tablaUsuarios" class="centrado col-md-8 offset-2 display-none">
             <div class="table-responsive">
                 <table class="table table-bordered tabla" id="table-container-usuarios">
                     <thead class="tabla thead">
@@ -156,8 +158,26 @@
                 </table>
             </div>
         </section>
-        <div id="editUserContainer" class="display-none mb-5">
-            <form class="mt-5 ml-4" action="user/edit/" id="usereditform" method="POST">
+        <section id="tablaComentarios" class="centrado col-md-8 offset-2 display-none">
+            <div class="table-responsive">
+                <table class="table table-bordered tabla" id="table-container-comentarios">
+                    <thead class="tabla thead">
+                        <tr>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Puntuacion</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla-container">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!--SECCION DE EDICION-->
+        <div id="editUserContainer" class="display-none col-md-8 offset-2 mb-5">
+            <form class="mt-5 ml-4" action="user/edit" id="usereditform" method="POST">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipuser">Nombre Usuario</label>
@@ -187,6 +207,39 @@
                 </div>
                 <button class="btn btn-success" type="submit">Editar</button>
                 <button class="btn btn-dark" type="button" onclick="cancelEdit()">Cancelar</button>
+            </form>
+        </div>
+        <div id="editComentarioContainer" class="display-none col-md-8 offset-2 mb-5">
+            <form class="mt-5 ml-4" action="comentario/edit"id="comentarioeditform" method="POST">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <h2>Usuario</h2>
+                        <p id="label_user_name"></p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h2>Puntuacion</h2>
+                        <p id="label_Puntuacion"></p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h2>Producto</h2>
+                        <p id="label_Producto"></p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label for="validationTooltipcomentario">Comentario</label>
+                            <textarea  name="comentario" type="text" class="form-control" rows="3" id="validationTooltipcomentario" placeholder="Comentario..." value="" required></textarea>
+                        </div>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <!--SECCCION ID PARA USO DEL SISTEMA-->
+                    <input name="id_comentario" id="id_comentario" type="number" class="display-none" value="">
+                </div>
+                <button class="btn btn-success" type="submit">Editar</button>
+                <button class="btn btn-dark" type="button" onclick="cancelEditComentario()">Cancelar</button>
             </form>
         </div>
     </div>

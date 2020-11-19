@@ -17,16 +17,18 @@ $method = $_SERVER["REQUEST_METHOD"];
 $router = new Router();
 
 // arma la tabla de ruteo
-$router->addRoute("comentarios", "GET", "ComentarioApiController", "getComentarios");
-$router->addRoute("comentario/:ID", "GET", "ComentarioApiController", "getComentario");
-$router->addRoute("comentario/nuevo", "POST", "ComentarioApiController", "agregarComentario");
-$router->addRoute("comentario/borrar/:ID", "DELETE", "ComentarioApiController", "borrarComentario");
+$router->addRoute("comentarios", "GET", "ComentariosApiController", "getComentariosByUsers");
+$router->addRoute("comentario/:ID", "GET", "ComentariosApiController", "getComentarioById");
+$router->addRoute("comentario/nuevo", "POST", "ComentariosApiController", "agregarComentario");
+$router->addRoute("comentario/:ID", "PUT", "ComentariosApiController", "editComentario");
+$router->addRoute("comentario/:ID", "DELETE", "ComentariosApiController", "borrarComentario");
 $router->addRoute("productos/","GET","ProductosApiController","getProductos");
 $router->addRoute("categorias/","GET","CategoriasApiController","getCategorias");
 $router->addRoute("usuarios/","GET","UsuariosApiController","getUsers");
 $router->addRoute("usuarios/:ID","GET","UsuariosApiController","getUserById");
 $router->addRoute("usuarios/:ID","PUT","UsuariosApiController","editUserById");
 $router->addRoute("usuarios/:ID","DELETE","UsuariosApiController","deleteUser");
+
 
 
 // rutea
