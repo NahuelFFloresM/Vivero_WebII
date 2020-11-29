@@ -22,47 +22,41 @@ document.addEventListener("DOMContentLoaded", function(){
          console.log(data);
      });
     });
+
+    function mostrarComentarios(){
+        let id = document.querySelector('#id_producto');
+        console.log(id);
+        fetch(`api/comentarios/${id_producto.value}`)
+        .then(response => response.text())
+        .then(comentarios => {
+            let content = document.querySelector('#container_comentarios');  
+            content.innerHTML = "" ;
+            console.log(comentarios);
+            for(let comentario of comentarios){
+               
+            content.innerHTML +=this.createComentarioHTML(comentario);
+        }
+        })
+        .catch(error => console.log(error));
+    }
+
+    mostrarComentarios();
+
+    function crearComentarioHTML(comentario) {
+        let element = `${comentario.comentario}: ${comentario.puntuacion}`;
+        element = `<li>${element}</li>`;
+        return element;  
+    }
 });
 
-function mostrarComentarios(){
-    fetch("api/comentarios", {
-        "method": "GET",
-        "mode":"no-cors",
-    })
-    .then(response => response.json())
-    .then(data => {
-        let tabla = document.querySelector('#table-container-comentarios');
-        var rowCount = tabla.rows.length;
-        for (var x=rowCount-1; x>0; x--) {
-            tabla.deleteRow(x);
-        }
-        data.forEach(element => {
-            let fila =
-            `<tr>
-                <td>${element.nombre_usuario}</td>
-                <td>${element.puntuacion}</td>
-                <td>${element.comentario}</td>
-                <td>${element.nombre_producto}</td>
-                <td>
-                    <div class='actions mb-1'>
-                        <button type="button" class="btn btn-success" onclick="editComentario(${element.id_comentario},'${element.nombre_usuario}','${element.nombre_producto}')">Editar</button>
-                    </div>
-                    <div class='actions mb-1'>
-                        <button type="button" class="btn btn-danger" onclick="deleteComentario(${element.id_comentario})">Borrar</button>
-                    </div>
-                </td>
-            </tr>`
-            let row = tabla.tBodies[0].insertRow(0);
-            row.innerHTML += fila;
-        });
-    });
-    cancelEdit();
-    cancelEditComentario();
-    document.getElementById('tablaProductos').style.display = 'none';
-    document.getElementById('tablaCategorias').style.display = 'none';
-    document.getElementById('tablaUsuarios').style.display = 'none';
-    document.getElementById('tablaComentarios').style.display = 'block';
-}
+
+
+
+
+
+
+
+
 
 function deleteComentario(id){
     fetch(`api/comentario/${id}`, {
