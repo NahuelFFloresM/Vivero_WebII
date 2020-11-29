@@ -17,7 +17,8 @@ class ComentariosApiController extends ApiController{
         return true;
     }
 
-    private function isAdmin($id){
+    private function isAdmin(){
+        $id = $_SESSION['id_user'];
         $find_user = $this->model_user->getUserById($id);
         // Agregar al AND el checqueo de PASSWORD
         if ($find_user){
@@ -29,39 +30,39 @@ class ComentariosApiController extends ApiController{
         return false;
     }
 
-    public function getComentarios($params =null) {
-        $comentarios = $this->model->getComentarios($params[0]);
-        if($comentario ==true){
-            return $this->response($comentario, 200);
-        }
-        else{
-            return $this->response(null, 404);
-        }
-    }
-
     public function agregarComentario($params = null){
         $array = $this->getData();
-        $respuesta = $this->model->agregarComentario($array->comentario, $array->puntuacion, $array->id_producto, $array->id_usuario);
-        
-        return $this->view->response($respuesta,200);
+        $comentario= $array->commentText;
+        $puntuacion=$array->inlineRadioOptions;
+        $id_producto=$array->id_producto;
+            $respuesta = $this->model->agregarComentario($comentario,$puntuacion,$id_producto,1);
+            if($respuesta){
+                $this->view->response("Se agrego exitosamente el comentario $respuesta",200);
+            }
+            else{
+                $this->view->response("No se pudo agregar el comentario",500);
+            }
     }
-
-    public function borrarComentario($params = null){
-        if ($this->isAdmin() && $params != null){
-            $id_comentario = $params[':ID'];
-            $respuesta = $this->model->borrarComentario($id_comentario);
-            $this->view->response($respuesta,200);
-        } else {
-            $this->view->response("El comentario no existe",404);
+    
+    public function getComentarios($params =null) {
+        $id_producto= $params[':ID'];
+        //var_dump($id_producto);
+        //die();
+        $comentarios = $this->model->getComentarios($id_producto);
+        if($comentarios==true){
+            return $this->response($comentarios, 200);
+        }
+        else{
+            return $this->response("No hay comentarios de este producto", 404);
         }
     }
 
-    public function getComentariosByUsers(){
+    public function getComentariosByUsers($params = null){
         if ($this->isAdmin()){
             $comentarios = $this->model->getComentariosByUsers();
             $this->view->response($comentarios,200);
         } else {
-            $this->view->response("Sesion Incorrecta",403);
+            $this->view->response("El comentario no existe",404);
         }
     }
 
@@ -71,7 +72,7 @@ class ComentariosApiController extends ApiController{
             $comentario = $this->model->getComentarioById($id);
             $this->view->response($comentario,200);
         } else {
-            $this->view->response("Sesion Incorrecta",403);
+            $this->view->response("El comentario no existe",404);
         }
     }
 
@@ -83,7 +84,13 @@ class ComentariosApiController extends ApiController{
             $comentario = $this->model->editComentario($id,$nuevo_comentario);
             $this->view->response($comentario,200);
         } else {
-            $this->view->response("Sesion Incorrecta",403);
+            $this->view->response("El comentario no existe",404);
+        }
+    }
+
+    public function borrarComentario($params =null){
+        if($this->isAdmin()){
+            
         }
     }
 
