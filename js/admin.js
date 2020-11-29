@@ -128,11 +128,30 @@ document.addEventListener("DOMContentLoaded", function(){
 //     });
 // }
 
+<<<<<<< HEAD
 
 // function cancelEditComentario(){
 //     document.getElementById('tablaComentarios').style.display = 'block';
 //     document.getElementById('editComentarioContainer').style.display = 'none';
 // }
+=======
+function editUser(id){
+    fetch(`api/usuarios/${id}`, {
+        "method": "GET",
+        "mode":"no-cors",
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('tablaUsuarios').style.display = 'none';
+        let formContainer = document.getElementById('editUserContainer');
+        formContainer.style.display = 'block';
+        document.getElementById('validationTooltipemail').value = data.email_usuario;
+        document.getElementById('validationTooltipuser').value = data.nombre_usuario;
+        document.getElementById('permiso_select').selectedIndex = data.permisos;
+        document.getElementById('id_user').value = data.id_usuario;
+    });
+}
+>>>>>>> 8d5ac65d296346a458936833b6467745963a2b09
 
 // function deleteComentario(id){
 //     showModal();
@@ -152,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // }
 
 function deleteUser(id){
+<<<<<<< HEAD
     showModal();
     document.getElementById('btn-aceptar').onclick = (event) => {
         event.preventDefault();
@@ -173,4 +193,15 @@ function showModal(){
 
 function dismissModal(){
     $('#exampleModal').modal('toggle');
+=======
+    fetch(`api/usuarios/${id}`, {
+        "method": "DELETE",
+        "mode":"cors",
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Armar respuesta en caso de mostrar mensaje de error
+        mostrarUsuarios();
+    });
+>>>>>>> 8d5ac65d296346a458936833b6467745963a2b09
 }
