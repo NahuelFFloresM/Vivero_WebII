@@ -46,14 +46,12 @@ class ComentariosApiController extends ApiController{
     
     public function getComentarios($params =null) {
         $id_producto= $params[':ID'];
-        //var_dump($id_producto);
-        //die();
         $comentarios = $this->model->getComentarios($id_producto);
-        if($comentarios==true){
-            return $this->response($comentarios, 200);
+        if($comentarios){
+            return $this->view->response($comentarios, 200);
         }
         else{
-            return $this->response("No hay comentarios de este producto", 404);
+            return $this->view->response("No hay comentarios de este producto", 404);
         }
     }
 

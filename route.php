@@ -6,6 +6,7 @@ require_once("./Controllers/InfoController.php");
 require_once("./Controllers/LoginController.php");
 require_once("./Controllers/ContactoController.php");
 require_once("./Controllers/CategoriaController.php");
+require_once("./Controllers/UserController.php");
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 define("URL_HOME", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/home');
@@ -29,6 +30,9 @@ $router->addRoute("register","GET","LoginController","getRegister");
 $router->addRoute("registeruser","POST","LoginController","registrarUser");
 $router->addRoute("logout","GET","LoginController","getLogout");
 $router->addRoute("admin","GET","LoginController","getAdmin");
+$router->addRoute("admin/categorias","GET","CategoriaController","getCategorias");
+$router->addRoute("admin/productos","GET","ProductoController","getProductosAdmin");
+$router->addRoute("admin/usuarios","GET","UserController","getUsuarios");
 $router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
@@ -44,6 +48,10 @@ $router->addRoute("editCategoria/:id","POST","CategoriaController","editCategori
 $router->addRoute("editCategoria/borrar/:id","POST","CategoriaController","deleteCategoria");
 $router->addRoute("editProducto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("editProducto/:id","POST","ProductoController","editProducto");
+$router->addRoute("editUsuario/:id","GET","UserController","editUsuario");
+$router->addRoute("editUsuario/:id","POST","UserController","editUserById");
+$router->addRoute("editUsuario/borrar/:id","POST","UserController","deleteUser");
+$router->addRoute("buscador","POST","ProductoController","buscadorProducto");
 
 
 $router-> setDefaultRoute("HomeController", "getHome");

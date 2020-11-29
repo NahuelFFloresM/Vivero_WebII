@@ -1,13 +1,14 @@
 <?php
-require_once "./Models/UserModel.php";
-require_once "./Views/UserView.php";
+require_once("./Models/UserModel.php");
+require_once("./Models/CategoriaModel.php");
+require_once("./Views/UserView.php");
 
 class UserController {
 
     private $model;
     private $view;
 
-	function __construct(){        
+	function __construct(){
         $this->model = new UserModel();
         $this->view = new UserView();
         session_start();
@@ -64,12 +65,12 @@ class UserController {
         }
     }
 
-    public function getAdmin(){
+    public function getUsuarios(){
         if ($this->verifySession()){
-            $productoM = new ProductoModel();
-            $productos = $productoM->getProductos();
-            $categorias = $productoM->getCategorias();
-            $this->view->DisplayAdmin($productos,$categorias);
+            $categoriaM = new CategoriaModel();
+            $usuarios = $this->model->getUsers();
+            $categorias = $categoriaM->getCategorias();
+            $this->view->DisplayAdmin($categorias,$usuarios);
         } else {
             header("Location: ".URL_HOME);
             die;
@@ -93,6 +94,41 @@ class UserController {
             }
         } else {
             $this->view->showLoginError('Login Incorrecto');
+        }
+    }
+
+    public function editUsuario($params){
+        $id = $params[':id'];
+        if ($this->isAdmin() && $id){
+            $categoriaM = new CategoriaModel();
+            $categorias = $categoriaM->getCategorias();
+            $user = $this->model->getUserById($id);
+            $this->view->DisplayEditUser($categorias,$user);
+        } else {
+            header("Location: ".URL_CONTACTO);
+            exit;
+        }
+    }
+
+    public function editUserById($params = null){
+        //$decoded = json_decode(file_get_contents("php://input"));
+        if ($this->isAdmin()){
+            $name = $_POST['nombre_user'];
+            $email = $_POST['email_user'];
+            $permiso = $_POST['permiso'];
+            $id = $params[':id'];
+            $result = $this->model->editUserById($name,$email,$permiso,$id);
+            header("Location: ".URL_ADMIN."/usuarios");
+            exit;
+        }
+    }
+
+    public function deleteUser($params = null){
+        if ($this->isAdmin()){
+            $id = $params[':id'];
+            $result = $this->model->deleteUser($id);
+            header("Location: ".URL_ADMIN."/usuarios");
+            exit;
         }
     }
 }

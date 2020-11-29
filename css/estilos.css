@@ -3,6 +3,21 @@ header{
   background-color: rgb(244, 212, 195);  
 }
 
+#menu-botones ul{
+  width: 50%;
+  list-style: none;
+  display: flex;
+  margin: auto;
+}
+
+#form_buscador{
+  text-align: center;
+  margin: auto;
+}
+#form_buscador button{
+  width: 100%;
+}
+
 .headerTitle{
   font-size: 50px;
 }
@@ -80,6 +95,11 @@ nav li a {
   color: white;
   text-align: center;
   padding: 14px 16px;
+}
+
+img{
+  max-width: 200px;
+  max-height: 200px;
 }
 
 footer{

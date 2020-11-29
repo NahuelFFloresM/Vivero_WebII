@@ -36,7 +36,32 @@
     </div>
 
     <div class="container">
-        <section class="centrado">
+        <form class="p-3 border rounded border-primary" action="buscador" id="form_buscador" method="POST">
+            <div class="row">
+                <div class="col">
+                    <label for="id_categoria">Categoria</label>
+                    <select name="id_categoria" name="id_categoria" class="form-control">
+                        <option value="-1">Todos</option>
+                    {foreach from=$categorias item=item}
+                        <option value="{$item->id_categoria}">{$item->nombre_categoria}</option> 
+                    {/foreach}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="nombre_producto">Producto</label>
+                    <input type="text" class="form-control" name="nombre_producto" id="nombre_producto" placeholder="Producto...">
+                </div>
+                <div class="col">
+                    <label for="precio_producto">Precio</label>
+                    <input type="number" class="form-control" name="precio_producto" id="precio_producto" placeholder="Menor a..." min="0">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+            
+        </form>
+        <section class="centrado mt-4">
             <a href="productos" class="button">
                 <button type="button" class="btn btn-primary"> Todos </button>
             </a>
@@ -45,45 +70,41 @@
                     <button type="button" class="btn btn-success"> {$item->nombre_categoria} </button>
                 </a>
             {/foreach}
+            
             <div class="table-responsive">
-                <nav class="navbar navbar-light bg-light">
-                   {* <form class="form-inline">
-                        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Ingresar producto..." aria-label="Buscar">
-                        <a class="btn btn-primary" href="#" role="button" id="buscarBtn" >
-                            Buscar
-                        </a>
-                    </form>*}
-                </nav>
-                <table class="table table-bordered tabla" id="tablita">
-                    <thead class="tabla thead">
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Mostrar</th>
-                        </tr>
-                    </thead>        
-                    <tbody class="tabla-container">
-                        {foreach from=$productos item=item }
-                        <tr>
-                            <td>{$item->nombre_producto}</td>
-                            <td>{$item->precio_producto}</td>
-                            <td>{$item->stock_producto}</td>
-                            <td>{$item->description_producto}</td> 
-                            <td> 
-                                <div class='actions'>
-                                <a href="productos/detalle/{$item->id_producto}" class="button">
-                                <button type="button" class="btn btn-success"> Ver </button>
-                                </a>
-                                </div> 
-                            </td>
-                        </tr>   
-                        {/foreach} 
-                    </tbody>
-                </table>
+                {if $productos}
+                    <table class="table table-bordered tabla" id="tablita">
+                        <thead class="tabla thead">
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Mostrar</th>
+                            </tr>
+                        </thead>        
+                        <tbody class="tabla-container">
+                            {foreach from=$productos item=item }
+                            <tr>
+                                <td>{$item->nombre_producto}</td>
+                                <td>{$item->precio_producto}</td>
+                                <td>{$item->stock_producto}</td>
+                                <td>{$item->description_producto}</td> 
+                                <td> 
+                                    <div class='actions'>
+                                    <a href="productos/detalle/{$item->id_producto}" class="button">
+                                    <button type="button" class="btn btn-success"> Ver </button>
+                                    </a>
+                                    </div> 
+                                </td>
+                            </tr>   
+                            {/foreach}
+                        </tbody>
+                    </table>
+                {else}
+                    <h2>Actulmente no contamos con stock para este producto</h2>
+                {/if}
             </div>
-        </div>
         </section>
     </div>
 </body>

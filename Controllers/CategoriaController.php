@@ -21,42 +21,53 @@ class CategoriaController {
         return true;
     }
     
+    private function isAdmin(){
+        if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+            return true;
+        }
+        return false;
+    }
 
 
     public function getCategorias(){
-        $categorias = $this->model->getCategorias();
-        return $categorias;
+        if ($this->isAdmin()){
+            $categorias = $this->model->getCategorias();
+            $this->view->DisplayAdmin($categorias);
+        } else {
+            header("Location: ".URL_HOME);
+            die;
+        }
     }
 
     public function nuevaCategoria(){
-        if (verifySession()){
+        if ($this->isAdmin()){
             $nombre = $_POST['nombre_categoria'];
             $descripcion = $_POST['descripcion_categoria'];
             $result = $this->model->nuevaCategoria($nombre,$descripcion);
-            header('Location: '.URL_ADMIN);
+            header('Location: '.URL_ADMIN.'/categorias');
         } else {
-            header('Location: '.URL_LOGIN);
+            header('Location: '.URL_HOME);
         }
     }
 
     public function editCategoria($params = null){
-        if (verifySession()){
+        if ($this->isAdmin()){
             $id = $params[':id'];
             $nombre = $_POST['nombre_categoria'];
             $descripcion = $_POST['descripcion_categoria'];
             $this->model->editCategoria($id,$nombre,$descripcion);
-            header('Location: '.URL_ADMIN);
+            header('Location: '.URL_ADMIN.'/categorias');
         } else {
             header('Location: '.URL_LOGIN);
         }
     }
 
     public function deleteCategoria($params = null){
-        if (verifySession()){
+        if ($this->isAdmin()){
             $id = $params[':id'];
             if ($id){
                 $this->model->deleteCategoria($id);
-                header('Location: '.URL_ADMIN);
+                header('Location: '.URL_ADMIN.'/categorias');
             } else {
                 // Armar Error y mostrar
                 header('Location: '.URL_ADMIN);

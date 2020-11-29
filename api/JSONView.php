@@ -23,3 +23,5 @@ class JSONView {
         return (isset($status[$code]))? $status[$code] : $status[500];
       }
 }
+
+?>

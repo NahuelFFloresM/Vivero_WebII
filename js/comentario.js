@@ -25,17 +25,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function mostrarComentarios(){
         let id = document.querySelector('#id_producto');
-        console.log(id);
-        fetch(`api/comentarios/${id_producto.value}`)
+        fetch(`api/comentarios/${id.value}`)
         .then(response => response.text())
-        .then(comentarios => {
-            let content = document.querySelector('#container_comentarios');  
-            content.innerHTML = "" ;
-            console.log(comentarios);
-            for(let comentario of comentarios){
-               
-            content.innerHTML +=this.createComentarioHTML(comentario);
-        }
+        .then(response => {
+            // let content = document.querySelector('#container_comentarios');  
+            // content.innerHTML = "" ;
+            console.log(response);
+            // for(let comentario of comentarios){
+            //     content.innerHTML +=this.createComentarioHTML(comentario);
+            // }
         })
         .catch(error => console.log(error));
     }
@@ -48,14 +46,6 @@ document.addEventListener("DOMContentLoaded", function(){
         return element;  
     }
 });
-
-
-
-
-
-
-
-
 
 
 function deleteComentario(id){

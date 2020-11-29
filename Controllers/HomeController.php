@@ -13,7 +13,7 @@ class HomeController {
     }
     
     public function getHome(){
-        // HAGO CALCULOS LOGICOS
+        
         $this->view->DisplayHome();
     }
 }

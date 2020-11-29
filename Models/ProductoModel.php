@@ -32,30 +32,24 @@ class ProductoModel {
         return $producto;
     }
 
-    public function nuevoProducto(){
-        $valores = array();
-        array_push($valores,$_POST['product_name'],$_POST['product_price'],$_POST['product_stock'],$_POST['product_description'],$_POST['id_categoria'],0);
-        $nombre = $_POST['product_name'];
-        $precio = $_POST['product_price'];
-        $stock = $_POST['product_stock'];
-        $description = $_POST['product_description'];
-        $idcat = $_POST['id_categoria'];
-        $sentencia = $this->db->prepare('INSERT INTO producto(nombre_producto,precio_producto,stock_producto,description_producto,id_categoria,destacado_producto)
-                                         VALUES(?,?,?,?,?,?)');        
-        return $sentencia->execute($valores);        
+    public function nuevoProducto($nombre,$precio,$stock,$description,$idcat,$img_url = "../images/default.jpg"){
+        $sentencia = $this->db->prepare('INSERT INTO producto(nombre_producto,precio_producto,stock_producto,description_producto,id_categoria,imagen_url,destacado_producto)
+                                         VALUES(?,?,?,?,?,?,?)');        
+        return $sentencia->execute([$nombre,$precio,$stock,$description,$idcat,$img_url,0]);
     }
 
-    public function editProducto($id){
-        $nombre = $_POST['product_name'];
-        $precio = $_POST['product_price'];
-        $stock = $_POST['product_stock'];
-        $description = $_POST['product_description'];
-        $idcat = $_POST['id_categoria'];
+    public function editProducto($nombre,$precio,$stock,$description,$idcat,$img_url,$id){
         $sentencia = $this->db->prepare('UPDATE producto
-                                         SET nombre_producto = ?,precio_producto=?,stock_producto=?,description_producto=?,id_categoria=?
-                                         WHERE id_producto=?;');
-        $sentencia->execute([$nombre,$precio,$stock,$description,$idcat,$id]);
-        return true;
+                                        SET nombre_producto = ?,precio_producto=?,stock_producto=?,description_producto=?,id_categoria=?,imagen_url=?
+                                        WHERE id_producto=?');
+        return $sentencia->execute([$nombre,$precio,$stock,$description,$idcat,$img_url,$id]);
+    }
+
+    public function getImagenProductoPath($id){
+        $sentencia = $this->db->prepare( "SELECT imagen_url FROM producto WHERE id_producto=?");
+        $sentencia->execute([$id]);
+        $imagen_path = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $imagen_path;
     }
 
     public function deleteProducto($id){
@@ -68,6 +62,28 @@ class ProductoModel {
         $sentencia->execute([$id]);
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
+        return $productos;
+    }
+
+    public function buscarProductos($categoria = null,$nombre = "",$precio = null){
+        $valores = array();
+        $sentencia = 'SELECT * FROM categoria as cat, producto as pr WHERE ';
+        $nombre = '%'.$nombre.'%';
+        array_push($valores,$nombre);
+        $sentencia .= 'pr.nombre_producto LIKE ? ';
+        if ($categoria > 0){
+            $sentencia .= 'AND cat.id_categoria = ? ';
+            array_push($valores,$categoria);
+        }        
+        if($precio != 0){
+            $sentencia .= 'AND pr.precio_producto <= ? ';
+            array_push($valores,$precio);
+        }
+        $sentencia .='AND cat.id_categoria = pr.id_categoria';
+        $sentencia = $this->db->prepare($sentencia);
+        //$sentencia = 'SELECT * FROM categoria as cat, producto as pr WHERE cat.id_categoria = ?,pr.precio_prodcuto <= ?,pr.nombre_producto LIKE ?';
+        $sentencia->execute($valores);
+        $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $productos;
     }
 }
