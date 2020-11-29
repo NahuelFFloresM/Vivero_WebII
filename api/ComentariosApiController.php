@@ -30,19 +30,28 @@ class ComentariosApiController extends ApiController{
         $comentario= $array->commentText;
         $puntuacion=$array->inlineRadioOptions;
         $id_producto=$array->id_producto;
-        //var_dump($puntuacion);
-        //die();
-        //if($array->comentario && $array->puntuacion){
             $respuesta = $this->model->agregarComentario($comentario,$puntuacion,$id_producto,1);
-            if($respuesta>0){
+            if($respuesta){
                 $this->view->response("Se agrego exitosamente el comentario $respuesta",200);
             }
             else{
                 $this->view->response("No se pudo agregar el comentario",500);
             }
-        //}
     }
     
+    public function getComentarios($params =null) {
+        $id_producto= $params[':ID'];
+        //var_dump($id_producto);
+        //die();
+        $comentarios = $this->model->getComentarios($id_producto);
+        if($comentarios==true){
+            return $this->response($comentarios, 200);
+        }
+        else{
+            return $this->response("No hay comentarios de este producto", 404);
+        }
+    }
+
     public function getComentariosByUsers($params = null){
         if ($this->isAdmin()){
             $comentarios = $this->model->getComentariosByUsers();
@@ -72,16 +81,5 @@ class ComentariosApiController extends ApiController{
         }
     }
 
-    public function getComentarios($params =null) {
-        $comentarios = $this->model->getComentarios($params[0]);
-        if($comentario ==true){
-            return $this->response($comentario, 200);
-        }
-        else{
-            return $this->response(null, 404);
-        }
-    }
-
-    
 
 }
