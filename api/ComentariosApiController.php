@@ -1,17 +1,15 @@
 <?php
 require_once("./api/ApiController.php");
+require_once("./Models/UserModel.php");
 require_once("./api/JSONView.php");
-require_once("./Models/ComentarioModel.php");
 
 class ComentariosApiController extends ApiController{
 
-    private $model;
+    private $model_user;
   
     public function __construct() {
-        // PREGUNTAR !!!!
         parent::__construct();
-        //
-        $this->model = new ComentarioModel();
+        $this->model_user = new UserModel();
         session_start();
     }
 
@@ -19,11 +17,15 @@ class ComentariosApiController extends ApiController{
         return true;
     }
 
-    private function isAdmin(){
-        // Lo mejor seria consultar a la DB por el permiso
-        if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+    private function isAdmin($id){
+        $find_user = $this->model_user->getUserById($id);
+        // Agregar al AND el checqueo de PASSWORD
+        if ($find_user){
             return true;
         }
+        // if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+        //     return true;
+        // }
         return false;
     }
 
@@ -45,7 +47,7 @@ class ComentariosApiController extends ApiController{
     }
 
     public function borrarComentario($params = null){
-        if ($params != null){
+        if ($this->isAdmin() && $params != null){
             $id_comentario = $params[':ID'];
             $respuesta = $this->model->borrarComentario($id_comentario);
             $this->view->response($respuesta,200);
@@ -78,7 +80,7 @@ class ComentariosApiController extends ApiController{
             $body = $this->getData();
             $id = $body->id_comentario;
             $nuevo_comentario = $body->comentario;
-            $comentario = $this->model->editComentario($nuevo_comentario,$id);
+            $comentario = $this->model->editComentario($id,$nuevo_comentario);
             $this->view->response($comentario,200);
         } else {
             $this->view->response("Sesion Incorrecta",403);
@@ -87,3 +89,5 @@ class ComentariosApiController extends ApiController{
 
 
 }
+
+?>
