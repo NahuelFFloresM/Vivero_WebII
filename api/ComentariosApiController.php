@@ -51,37 +51,6 @@ class ComentariosApiController extends ApiController{
         }
     }
 
-    public function getComentariosByUsers($params = null){
-        if ($this->isAdmin()){
-            $comentarios = $this->model->getComentariosByUsers();
-            $this->view->response($comentarios,200);
-        } else {
-            $this->view->response("El comentario no existe",404);
-        }
-    }
-
-    public function getComentarioById($params = null){
-        if ($this->isAdmin()){
-            $id = $params[':ID'];
-            $comentario = $this->model->getComentarioById($id);
-            $this->view->response($comentario,200);
-        } else {
-            $this->view->response("El comentario no existe",404);
-        }
-    }
-
-    public function editComentario(){
-        if ($this->isAdmin()){
-            $body = $this->getData();
-            $id = $body->id_comentario;
-            $nuevo_comentario = $body->comentario;
-            $comentario = $this->model->editComentario($id,$nuevo_comentario);
-            $this->view->response($comentario,200);
-        } else {
-            $this->view->response("El comentario no existe",404);
-        }
-    }
-
     public function borrarComentario($params =null){
         $body = $this->getData();
         if($this->isAdmin($body->user_email,$body->password)){
@@ -92,7 +61,6 @@ class ComentariosApiController extends ApiController{
             $this->view->response("Sin permisos",500);
         }
     }
-
 
 }
 
