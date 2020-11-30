@@ -29,7 +29,8 @@ class ComentariosApiController extends ApiController{
         $array = $this->getData();
         $comentario= $array->commentText;
         $puntuacion=$array->inlineRadioOptions;
-        $id_producto=$array->id_producto;
+        $id_producto=$array->id;
+        
             $respuesta = $this->model->agregarComentario($comentario,$puntuacion,$id_producto,1);
             if($respuesta){
                 $this->view->response("Se agrego exitosamente el comentario $respuesta",200);
