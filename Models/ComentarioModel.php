@@ -27,7 +27,7 @@ class ComentarioModel {
     public function agregarComentario($comentario, $puntuacion, $id_producto, $id_usuario){
         $sentencia = $this->db->prepare('INSERT INTO comentario(comentario,puntuacion,id_producto,id_usuario)
                                          VALUES(?,?,?,?)');        
-        return $sentencia->execute(array($comentario,$puntuacion,$id_producto,$id_usuario));        
+        return $sentencia->execute(array($comentario,$puntuacion,$id_producto,$id_usuario));
     }
     
 
