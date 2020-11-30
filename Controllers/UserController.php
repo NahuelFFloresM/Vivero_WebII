@@ -54,11 +54,16 @@ class UserController {
 
     public function registrarUser(){
         if (!$this->verifySession()){
-            $nombre = $_POST['username'];
-            $email = $_POST['useremail'];
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $response = $this->model->registrarUser($nombre,$email,$password);
-            $this->verifyUser();
+            if (isset($_POST['username']) && isset($_POST['useremail']) && isset($_POST['password'])){
+                $nombre = $_POST['username'];
+                $email = $_POST['useremail'];
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $response = $this->model->registrarUser($nombre,$email,$password);
+                $this->verifyUser();
+            } else {
+                header("Location: ".URL_LOGIN);
+                exit;
+            }
         } else {
             header("Location: ".URL_HOME);
             exit;
@@ -78,56 +83,71 @@ class UserController {
     }
 
     public function verifyUser(){
-        $useremail = $_POST['useremail'];
-        $password = $_POST['password'];
-        $user = $this->model->getUserByMail($useremail);
-        if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
-            $_SESSION['user_id'] = $user->id_usuario;
-            $_SESSION['username'] = $user->nombre_usuario;
-            // Chequear si la session esta iniciada con isset($_SESSION)
-            if($user->permisos == 0){
-                header("Location: ".URL_CONTACTO);
-                exit;
-            } else{
-                header("Location: ".URL_ADMIN);
-                exit;
+        if (isset($_POST['useremail']) && isset($_POST['password'])){
+            $useremail = $_POST['useremail'];
+            $password = $_POST['password'];
+            $user = $this->model->getUserByMail($useremail);
+            if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
+                $_SESSION['user_id'] = $user->id_usuario;
+                $_SESSION['username'] = $user->nombre_usuario;
+                // Chequear si la session esta iniciada con isset($_SESSION)
+                if($user->permisos == 0){
+                    header("Location: ".URL_CONTACTO);
+                    exit;
+                } else{
+                    header("Location: ".URL_ADMIN);
+                    exit;
+                }
+            } else {
+                $this->view->showLoginError('Login Incorrecto');
             }
         } else {
             $this->view->showLoginError('Login Incorrecto');
         }
     }
 
-    public function editUsuario($params){
-        $id = $params[':id'];
-        if ($this->isAdmin() && $id){
-            $categoriaM = new CategoriaModel();
-            $categorias = $categoriaM->getCategorias();
-            $user = $this->model->getUserById($id);
-            $this->view->DisplayEditUser($categorias,$user);
-        } else {
-            header("Location: ".URL_CONTACTO);
-            exit;
+    public function editUsuario($params = null){
+        if ($params != null){
+            $id = $params[':id'];
+            if ($this->isAdmin()){
+                $categoriaM = new CategoriaModel();
+                $categorias = $categoriaM->getCategorias();
+                $user = $this->model->getUserById($id);
+                $this->view->DisplayEditUser($categorias,$user);
+            } else {
+                header("Location: ".URL_CONTACTO);
+                exit;
+            }
         }
     }
 
     public function editUserById($params = null){
-        //$decoded = json_decode(file_get_contents("php://input"));
         if ($this->isAdmin()){
-            $name = $_POST['nombre_user'];
-            $email = $_POST['email_user'];
-            $permiso = $_POST['permiso'];
-            $id = $params[':id'];
-            $result = $this->model->editUserById($name,$email,$permiso,$id);
-            header("Location: ".URL_ADMIN."/usuarios");
-            exit;
+            if ( ($params != null) && isset($_POST['nombre_user']) && isset($_POST['email_user']) && isset($_POST['permiso'])){
+                $name = $_POST['nombre_user'];
+                $email = $_POST['email_user'];
+                $permiso = $_POST['permiso'];
+                $id = $params[':id'];
+                $result = $this->model->editUserById($name,$email,$permiso,$id);
+                header("Location: ".URL_ADMIN."/usuarios");
+                exit;
+            } else {
+                header("Location: ".URL_ADMIN."/usuarios");
+                exit;
+            }
         }
     }
 
     public function deleteUser($params = null){
         if ($this->isAdmin()){
-            $id = $params[':id'];
-            $result = $this->model->deleteUser($id);
+            if ($params != null){
+                $id = $params[':id'];
+                $result = $this->model->deleteUser($id);
+            }
             header("Location: ".URL_ADMIN."/usuarios");
+            exit;
+        } else{
+            header("Location: ".URL_HOME);
             exit;
         }
     }
