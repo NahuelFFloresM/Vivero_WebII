@@ -41,10 +41,14 @@ class CategoriaController {
 
     public function nuevaCategoria(){
         if ($this->isAdmin()){
-            $nombre = $_POST['nombre_categoria'];
-            $descripcion = $_POST['descripcion_categoria'];
-            $result = $this->model->nuevaCategoria($nombre,$descripcion);
-            header('Location: '.URL_ADMIN.'/categorias');
+            if (isset($_POST['nombre_categoria']) && isset($_POST['descripcion_categoria']) ){
+                $nombre = $_POST['nombre_categoria'];
+                $descripcion = $_POST['descripcion_categoria'];
+                $result = $this->model->nuevaCategoria($nombre,$descripcion);
+                header('Location: '.URL_ADMIN.'/categorias');
+            } else {
+                header('Location'.URL_ADMIN.'/categorias');
+            }
         } else {
             header('Location: '.URL_HOME);
         }
@@ -52,11 +56,15 @@ class CategoriaController {
 
     public function editCategoria($params = null){
         if ($this->isAdmin()){
-            $id = $params[':id'];
-            $nombre = $_POST['nombre_categoria'];
-            $descripcion = $_POST['descripcion_categoria'];
-            $this->model->editCategoria($id,$nombre,$descripcion);
-            header('Location: '.URL_ADMIN.'/categorias');
+            if (($params != null) && isset($_POST['nombre_categoria']) && isset($_POST['descripcion_categoria'])){
+                $id = $params[':id'];
+                $nombre = $_POST['nombre_categoria'];
+                $descripcion = $_POST['descripcion_categoria'];
+                $this->model->editCategoria($id,$nombre,$descripcion);
+                header('Location: '.URL_ADMIN.'/categorias');
+            } else {
+                header('Location: '.URL_ADMIN.'/categorias');
+            }
         } else {
             header('Location: '.URL_LOGIN);
         }
@@ -64,13 +72,17 @@ class CategoriaController {
 
     public function deleteCategoria($params = null){
         if ($this->isAdmin()){
-            $id = $params[':id'];
-            if ($id){
-                $this->model->deleteCategoria($id);
-                header('Location: '.URL_ADMIN.'/categorias');
+            if ($params != null){
+                $id = $params[':id'];
+                if ($id){
+                    $this->model->deleteCategoria($id);
+                    header('Location: '.URL_ADMIN.'/categorias');
+                } else {
+                    // Armar Error y mostrar
+                    header('Location: '.URL_ADMIN);
+                }
             } else {
-                // Armar Error y mostrar
-                header('Location: '.URL_ADMIN);
+                header('Location: '.URL_ADMIN.'/categorias');
             }
         } else {
             header('Location: '.URL_LOGIN);
@@ -78,13 +90,12 @@ class CategoriaController {
     }
 
     public function getCategoriaById($params = null){
-        $id = $params[':id'];
-        if ($id){
+        if ($params != null){
+            $id = $params[':id'];
             $categoria = $this->model->getCategoriaById($id);
             $this->view->mostrarCategoria($categoria);
         } else {
-            // Armar Error y mostrar
-            header('Location: '.URL_ADMIN);
+            header('Location: '.URL_ADMIN.'/categorias');
         }
     }
 }
