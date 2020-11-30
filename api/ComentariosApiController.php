@@ -17,16 +17,11 @@ class ComentariosApiController extends ApiController{
         return true;
     }
 
-    private function isAdmin(){
-        $id = $_SESSION['id_user'];
-        $find_user = $this->model_user->getUserById($id);
-        // Agregar al AND el checqueo de PASSWORD
-        if ($find_user){
+    private function isAdmin($email,$password){
+        $find_user = $this->model_user->getUserByEmail($email);
+        if ($find_user && (password_verify($password,$find_user->contrasenia_usuario)) && ($find_user->permisos == 1)){
             return true;
         }
-        // if(isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
-        //     return true;
-        // }
         return false;
     }
 
@@ -87,8 +82,13 @@ class ComentariosApiController extends ApiController{
     }
 
     public function borrarComentario($params =null){
-        if($this->isAdmin()){
-            
+        $body = $this->getData();
+        if($this->isAdmin($body->user_email,$body->password)){
+            $id = $params[':ID'];
+            $response = $this->model->borrarComentario($id);
+            $this->view->response("Borrado Exitosamente",200);
+        } else{
+            $this->view->response("Sin permisos",500);
         }
     }
 
