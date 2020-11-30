@@ -11,6 +11,7 @@ require_once("./Controllers/UserController.php");
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 define("URL_HOME", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/home');
 define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
+define("URL_REGISTER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/register');
 define("URL_CONTACTO", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/contacto');
 define("URL_ADMIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
 
@@ -32,9 +33,11 @@ $router->addRoute("logout","GET","LoginController","getLogout");
 $router->addRoute("admin","GET","LoginController","getAdmin");
 $router->addRoute("admin/categorias","GET","CategoriaController","getCategorias");
 $router->addRoute("admin/productos","GET","ProductoController","getProductosAdmin");
+$router->addRoute("admin/productos/pagina/:PAG","GET","ProductoController","getProductosAdmin");
 $router->addRoute("admin/usuarios","GET","UserController","getUsuarios");
 $router->addRoute("loguser","POST","LoginController","verifyUser");
 $router->addRoute("productos","GET","ProductoController","getProductos");
+$router->addRoute("productos/pagina/:PAG","GET","ProductoController","getProductos");
 $router->addRoute("info","GET","InfoController","getInfo");
 $router->addRoute("contacto","GET","ContactoController","getContacto");
 $router->addRoute("producto","POST","ProductoController","nuevoProducto");
@@ -42,6 +45,7 @@ $router->addRoute("producto/:id","GET","ProductoController","getProductoById");
 $router->addRoute("producto/borrar/:id","POST","ProductoController","deleteProducto");
 $router->addRoute("productos/detalle/:id","GET","ProductoController","mostrarDetalle");
 $router->addRoute("productos/categoria/:id_categoria","GET","ProductoController","getProductoPorCategoria");
+$router->addRoute("productos/categoria/:id_categoria/pagina/:PAG","GET","ProductoController","getProductoPorCategoria");
 $router->addRoute("categoria","POST","CategoriaController","nuevaCategoria");
 $router->addRoute("editCategoria/:id","GET","CategoriaController","getCategoriaById");
 $router->addRoute("editCategoria/:id","POST","CategoriaController","editCategoria");
@@ -52,6 +56,7 @@ $router->addRoute("editUsuario/:id","GET","UserController","editUsuario");
 $router->addRoute("editUsuario/:id","POST","UserController","editUserById");
 $router->addRoute("editUsuario/borrar/:id","POST","UserController","deleteUser");
 $router->addRoute("buscador","POST","ProductoController","buscadorProducto");
+$router->addRoute("buscador/pagina/:PAG","POST","ProductoController","buscadorProducto");
 
 
 $router-> setDefaultRoute("HomeController", "getHome");
