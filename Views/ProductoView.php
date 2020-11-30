@@ -22,9 +22,12 @@ class ProductoView {
         echo $msg;
     }
 
-    public function mostrarProductos($productos,$categorias){
+    public function mostrarProductos($productos,$categorias,$pagina = null,$total_paginas){
         $this->smarty->assign('productos',$productos);
         $this->smarty->assign('categorias',$categorias);
+        if (!$pagina) {$this->smarty->assign('pagination',1);}
+        else $this->smarty->assign('pagination',$pagina);
+        $this->smarty->assign('total_paginas',$total_paginas);
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
