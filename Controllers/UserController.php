@@ -80,6 +80,7 @@ class UserController {
     public function verifyUser(){
         $useremail = $_POST['useremail'];
         $password = $_POST['password'];
+        
         $user = $this->model->getUserByMail($useremail);
         if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
             $_SESSION['user_id'] = $user->id_usuario;
