@@ -60,7 +60,7 @@ class LoginController {
             $response = $this->model->registrarUser($nombre,$email,$password);
             $this->verifyUser();
         } else {
-            header("Location: ".URL_HOME);
+            header("Location: ".URL_REGISTER);
             exit;
         }
     }
@@ -68,7 +68,7 @@ class LoginController {
     public function getAdmin(){
         if ($this->verifySession() && $this->isAdmin()){
             $productoM = new ProductoModel();
-            $productos = $productoM->getProductos();
+            $productos = $productoM->getProductosAdmin();
             $categorias = $productoM->getCategorias();
             $this->view->DisplayAdmin($productos,$categorias);
         } else {
@@ -78,20 +78,24 @@ class LoginController {
     }
 
     public function verifyUser(){
-        $useremail = $_POST['useremail'];
-        $password = $_POST['password'];
-        $user = $this->model->getUserByMail($useremail);
-        if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
-            $_SESSION['user_id'] = $user->id_usuario;
-            $_SESSION['username'] = $user->nombre_usuario;
-            $_SESSION['permisos'] = $user->permisos;
-            // Chequear si la session esta iniciada con isset($_SESSION)
-            if($user->permisos == 0){
-                header("Location: ".URL_CONTACTO);
-                exit;
-            } else{
-                header("Location: ".URL_ADMIN);
-                exit;
+        if (isset($_POST['useremail']) && isset($_POST['password'])){
+            $useremail = $_POST['useremail'];
+            $password = $_POST['password'];
+            $user = $this->model->getUserByMail($useremail);
+            if (!empty($user) && password_verify($password,$user->contrasenia_usuario)){
+                $_SESSION['user_id'] = $user->id_usuario;
+                $_SESSION['username'] = $user->nombre_usuario;
+                $_SESSION['permisos'] = $user->permisos;
+                // Chequear si la session esta iniciada con isset($_SESSION)
+                if($user->permisos == 0){
+                    header("Location: ".URL_CONTACTO);
+                    exit;
+                } else{
+                    header("Location: ".URL_ADMIN);
+                    exit;
+                }
+            } else {
+                $this->view->showLoginError('Login Incorrecto');
             }
         } else {
             $this->view->showLoginError('Login Incorrecto');
