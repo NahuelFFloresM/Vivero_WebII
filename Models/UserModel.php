@@ -24,6 +24,14 @@ class UserModel {
         return $user;
     }
 
+    public function getUserByEmail($email){
+        $sentencia = $this->db->prepare("SELECT id_usuario,nombre_usuario,email_usuario,permisos,contrasenia_usuario FROM usuario WHERE email_usuario = ?");
+        $sentencia->execute([$email]);
+        $user = $sentencia->fetch(PDO::FETCH_OBJ);
+        
+        return $user;
+    }
+
     public function editUserById($nombre,$email,$permiso,$id){
         $sentencia = $this->db->prepare('UPDATE usuario
         SET nombre_usuario = ?,email_usuario=?,permisos=?
