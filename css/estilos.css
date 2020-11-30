@@ -10,6 +10,10 @@ header{
   margin: auto;
 }
 
+#pagination-nav{
+  margin: auto;
+}
+
 #form_buscador{
   text-align: center;
   margin: auto;
@@ -40,11 +44,7 @@ header{
   margin-bottom: 1%;
 }
 
-.h1{
-  text-align: center;
-}
-
-.h2{
+.h1,.h2{
   text-align: center;
 }
 
