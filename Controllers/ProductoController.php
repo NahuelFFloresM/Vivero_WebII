@@ -8,6 +8,7 @@ class ProductoController {
     private $model;
     private $view;
     private $sesion;
+    private $itemsXpagina = 5;
 
 	function __construct(){        
         $this->model = new ProductoModel();
@@ -38,11 +39,22 @@ class ProductoController {
     }
 
     /*Obtiene todos los productos y hace el display*/
-    public function getProductos(){
-        $productos = $this->model->getProductos();
+    public function getProductos($params = null){
+        if ($params){
+            $pagina = $params[':PAG'];
+        }
+        if(isset($pagina)){
+            $offset = $this->itemsXpagina*$pagina;
+        } else {
+            $pagina = 1;
+            $offset = 0;
+        }        
+        $productos = $this->model->getProductos($offset);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
-        $this->view->mostrarProductos($productos,$categorias);
+        $cantidad_paginas = $this->model->getCantidadProductos();
+        $cantidad_paginas = floor($cantidad_paginas->total_items/($this->itemsXpagina));
+        $this->view->mostrarProductos($productos,$categorias,$pagina,$cantidad_paginas);
     }
 
     public function getProductosAdmin(){
@@ -148,10 +160,18 @@ class ProductoController {
     
     public function getProductoPorCategoria($params = null){
         $id = $params[':id_categoria'];
-        $productos = $this->model->getProductosPorCate($id);
+        if(isset($params[':PAG'])){
+            $pagina = $params[':PAG'];
+            $offset = $this->itemsXpagina*$pagina;
+        } else {
+            $pagina = 1;
+            $offset = 0;
+        }
+        $productos = $this->model->getProductosPorCate($id,$offset);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
-        $this->view->mostrarProductos($productos,$categorias);
+        $cantidad_paginas = floor(count($productos)/($this->itemsXpagina));
+        $this->view->mostrarProductos($productos,$categorias,$pagina,$cantidad_paginas);
     }
 
     function mostrarDetalle($params=null) {
@@ -165,14 +185,23 @@ class ProductoController {
         }
     }
 
-    function buscadorProducto(){
+    function buscadorProducto($params = null){
+        if ($params){
+            $pagina = $params[':PAG'];
+            $offset = $this->itemsXpagina*$pagina;
+        } else {
+            $pagina = 1;
+            $offset = 0;
+        }
         $categoria = $_POST['id_categoria'];
         $nombre = $_POST['nombre_producto'];
         $precio = $_POST['precio_producto'];
-        $productos = $this->model->buscarProductos($categoria,$nombre,$precio);
+        $productos = $this->model->buscarProductos($categoria,$nombre,$precio,$offset);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
-        $this->view->mostrarProductos($productos,$categorias);
+        // Total de paginas de lo buscado
+        $cantidad_paginas = floor(count($productos)/($this->itemsXpagina));
+        $this->view->mostrarProductos($productos,$categorias,$pagina,$cantidad_paginas);
     }
 }
 
