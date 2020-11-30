@@ -282,67 +282,8 @@
             </form>
         </div>
         {/if}
-        {if isset($edit_comentario)}
-        <div id="editComentarioContainer" class="col-md-8 offset-2 mb-5">
-            <form class="mt-5 ml-4" action="comentario/edit"id="comentarioeditform" method="POST">
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <h2>Usuario</h2>
-                        <p id="label_user_name"></p>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <h2>Puntuacion</h2>
-                        <p id="label_Puntuacion"></p>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <h2>Producto</h2>
-                        <p id="label_Producto"></p>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-12 mb-3">
-                        <div class="form-group">
-                            <label for="validationTooltipcomentario">Comentario</label>
-                            <textarea  name="comentario" type="text" class="form-control" rows="3" id="validationTooltipcomentario" placeholder="Comentario..." value="" required></textarea>
-                        </div>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                    </div>
-                    <!--SECCCION ID PARA USO DEL SISTEMA-->
-                    <input name="id_comentario" id="id_comentario" type="number" class="display-none" value="">
-                </div>
-                <button class="btn btn-success" type="submit">Editar</button>
-                <button class="btn btn-dark" type="button" onclick="cancelEditComentario()">Cancelar</button>
-            </form>
-        </div>
-        {/if}
     </div>
 </div>
-<!--MODAL PARA CONFIRMAR BORRADOS-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-danger" id="exampleModalLabel">Borrar Elemento</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h3>¿Esta seguro que desear borrar el elemento?</h3>
-      </div>
-      <div class="modal-footer">
-        <form action="" method="POST">
-            <button type="submit" class="btn btn-danger" id="btn-aceptar">Aceptar</button>
-        </form>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="js/admin.js" crossorigin="anonymous">
-</script>
 </body>
 
 {include file="footer.tpl"}
