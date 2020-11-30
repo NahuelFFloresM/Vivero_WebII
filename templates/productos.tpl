@@ -59,7 +59,6 @@
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
             </div>
-            
         </form>
         <section class="centrado mt-4">
             <a href="productos" class="button">
@@ -70,7 +69,6 @@
                     <button type="button" class="btn btn-success"> {$item->nombre_categoria} </button>
                 </a>
             {/foreach}
-            
             <div class="table-responsive">
                 {if $productos}
                     <table class="table table-bordered tabla" id="tablita">
@@ -92,15 +90,35 @@
                                 <td>{$item->description_producto}</td> 
                                 <td> 
                                     <div class='actions'>
-                                    <a href="productos/detalle/{$item->id_producto}" class="button">
-                                    <button type="button" class="btn btn-success"> Ver </button>
-                                    </a>
+                                        <a href="productos/detalle/{$item->id_producto}" class="button">
+                                            <button type="button" class="btn btn-success"> Ver </button>
+                                        </a>
                                     </div> 
                                 </td>
                             </tr>   
                             {/foreach}
                         </tbody>
                     </table>
+                    <nav aria-label="..." id="pagination-nav" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item {if isset($pagination) && ($pagination == 1)}disabled{/if}">
+                                <a class="page-link" href="productos/pagina/{$pagination-1}">Previous</a>
+                            </li>
+                            {for $foo=1 to $total_paginas}
+                                <li class="page-item {if $pagination == $foo}active{/if}">
+                                    <a class="page-link" href="productos/pagina/{$foo}">{$foo}</a>
+                                </li>
+                            {/for}
+                            {if (!$total_paginas)}
+                                <li class="page-item active">
+                                    <a class="page-link" href="productos/pagina/1">1</a>
+                                </li>
+                            {/if}
+                            <li class="page-item {if isset($pagination) && ($pagination == $total_paginas)}disabled{/if}">
+                                <a class="page-link" href="productos/pagina/{$pagination+1}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 {else}
                     <h2>Actulmente no contamos con stock para este producto</h2>
                 {/if}
