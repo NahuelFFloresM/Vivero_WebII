@@ -34,7 +34,8 @@
                     </table>
                     <div class="row">
                         <div class="col-md-6">
-                        <input name="id_producto" type="hidden" class="form-control" id="id_producto" value="{$producto->id_producto}">
+                        <input name="id_producto" type="hidden" class="form-control" id="id_producto" value="{$producto->id_producto}"></input>
+                        
                             {if isset($logged)}
                             <form method="POST" action="#" class="text-center" id="comentario_form">
                                 <!-- id_producto -->

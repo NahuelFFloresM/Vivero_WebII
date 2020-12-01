@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById('comentario_form').addEventListener('submit',function(event){
             event.preventDefault();
             let bodyData = {
-                "id" : document.querySelector('#id_producto').value 
+                "id_producto" : document.querySelector('#id_producto').value
             }
             let formData = new FormData(document.getElementById('comentario_form'));
             for(var pair of formData.entries()) {
