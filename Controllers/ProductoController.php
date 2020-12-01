@@ -58,7 +58,7 @@ class ProductoController {
     }
 
     public function getProductosAdmin(){
-        $productos = $this->model->getProductos();
+        $productos = $this->model->getProductosAdmin();
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
         $this->view->DisplayAdmin($productos,$categorias);
@@ -122,9 +122,14 @@ class ProductoController {
             }
             if ($filepath){
                 $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath,$id);
-                $response = $this->model->borrarImagen($filepath_actual['imagen_url']);
+                $this->borrarImagen($filepath_actual->imagen_url);
             } else {
-                $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath_actual,$id);
+                if (isset($_POST['setBorradoImagen'])){
+                    $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,null,$id);
+                    $this->borrarImagen($filepath_actual->imagen_url);
+                } else {
+                    $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath_actual,$id);
+                }                
             }
             header("Location: ".URL_ADMIN);
             die;
