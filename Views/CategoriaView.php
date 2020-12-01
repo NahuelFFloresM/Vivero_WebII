@@ -16,10 +16,16 @@ class CategoriaView {
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->display('templates/categorias.tpl');
     }
 
     public function DisplayAdmin($categorias) {
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->assign('categorias',$categorias);
         $this->smarty->assign('selectCate',$categorias);
         $this->smarty->assign('logged',true);

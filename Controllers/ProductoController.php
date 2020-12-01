@@ -172,11 +172,12 @@ class ProductoController {
             $pagina = 1;
             $offset = 0;
         }
-        $productos = $this->model->getProductosPorCate($id,$offset);
+        $productos = $this->model->getProductosPorCate($id);
+        $respuesta = array_slice($productos,$offset,$this->itemsXpagina);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
         $cantidad_paginas = floor(count($productos)/($this->itemsXpagina));
-        $this->view->mostrarProductos($productos,$categorias,$pagina,$cantidad_paginas);
+        $this->view->mostrarProductos($respuesta,$categorias,$pagina,$cantidad_paginas);
     }
 
     function mostrarDetalle($params=null) {
@@ -201,12 +202,13 @@ class ProductoController {
         $categoria = $_POST['id_categoria'];
         $nombre = $_POST['nombre_producto'];
         $precio = $_POST['precio_producto'];
-        $productos = $this->model->buscarProductos($categoria,$nombre,$precio,$offset);
+        $productos = $this->model->buscarProductos($categoria,$nombre,$precio);
+        $respuesta = array_slice($productos,$offset,$this->itemsXpagina);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
         // Total de paginas de lo buscado
         $cantidad_paginas = floor(count($productos)/($this->itemsXpagina));
-        $this->view->mostrarProductos($productos,$categorias,$pagina,$cantidad_paginas);
+        $this->view->mostrarProductos($respuesta,$categorias,$pagina,$cantidad_paginas);
     }
 }
 

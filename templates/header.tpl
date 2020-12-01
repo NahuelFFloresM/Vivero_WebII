@@ -26,6 +26,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contacto">Contacto</a>
                     </li>
+                    {if isset($isAdmin)}
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin">ADMIN</a>
+                    </li>
+                    {/if}
                     {if isset($logged)}
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Logout</a>

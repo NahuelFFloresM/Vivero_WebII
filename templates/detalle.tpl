@@ -1,7 +1,8 @@
 {include file="head.tpl"}
 <body>
 {include file="header.tpl"}
- 
+    
+    {* Separo vista de detalles entre public y admin*}
     {if !isset($edit)}
         <div class="container">
             <section class="centrado">

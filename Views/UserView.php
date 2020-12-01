@@ -19,6 +19,7 @@ class UserView {
     }
     public function DisplayEditUser($categorias,$user) {
         $this->smarty->assign('edit_user',$user);
+        $this->smarty->assign('isAdmin',true);
         $this->smarty->assign('selectCate',$categorias);
         $this->smarty->assign('selector_options',array(
             1 => 'Admin',

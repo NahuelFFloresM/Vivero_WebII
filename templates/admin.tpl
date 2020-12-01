@@ -134,7 +134,13 @@
                             <td>{$item->precio_producto}</td>
                             <td>{$item->stock_producto}</td>
                             <td>{$item->description_producto}</td> 
-                            <td>{($item->imagen_url) ? $item->imagen_url :"Por Defecto" }</td> 
+                            <td>
+                                {if ($item->imagen_url) }
+                                        <img src="./{$item->imagen_url}" alt="imagen_producto">
+                                {else}
+                                    <img src="./images/default.jpg" alt="imagen_producto">
+                                {/if}
+                            </td> 
                             <td>
                                 <div class='actions mb-1'>
                                     <a href="producto/{$item->id_producto}" class="button">

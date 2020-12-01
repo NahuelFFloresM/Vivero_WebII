@@ -15,6 +15,9 @@ class ContactoView {
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->display('templates/contacto.tpl');
     }
 

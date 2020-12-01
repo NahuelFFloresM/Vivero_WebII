@@ -84,8 +84,8 @@ class ProductoModel {
         return $sentencia->execute([$id]);
     }
 
-    public function getProductosPorCate($id,$offset){
-        $query = 'SELECT * FROM producto WHERE id_categoria=? LIMIT 5 OFFSET '.$offset;
+    public function getProductosPorCate($id){
+        $query = 'SELECT * FROM producto WHERE id_categoria=?';
         $sentencia = $this->db->prepare($query);
         $sentencia->execute([$id]);
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -93,7 +93,7 @@ class ProductoModel {
         return $productos;
     }
 
-    public function buscarProductos($categoria = null,$nombre = "",$precio = null,$offset){
+    public function buscarProductos($categoria = null,$nombre = "",$precio = null){
         $valores = array();
         $sentencia = 'SELECT * FROM categoria as cat, producto as pr WHERE ';
         $nombre = '%'.$nombre.'%';
@@ -107,7 +107,7 @@ class ProductoModel {
             $sentencia .= 'AND pr.precio_producto <= ? ';
             array_push($valores,$precio);
         }
-        $sentencia .='AND cat.id_categoria = pr.id_categoria LIMIT 5 OFFSET '.$offset;
+        $sentencia .='AND cat.id_categoria = pr.id_categoria';
         $sentencia = $this->db->prepare($sentencia);
         //$sentencia = 'SELECT * FROM categoria as cat, producto as pr WHERE cat.id_categoria = ?,pr.precio_prodcuto <= ?,pr.nombre_producto LIKE ?';
         $sentencia->execute($valores);

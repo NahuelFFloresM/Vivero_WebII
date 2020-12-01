@@ -24,6 +24,7 @@ class LoginView {
     public function DisplayAdmin($productos,$categorias) {
         $this->smarty->assign('productos',$productos);
         $this->smarty->assign('selectCate',$categorias);
+        $this->smarty->assign('isAdmin',true);
         $this->smarty->assign('logged',true);
         $this->smarty->display('templates/admin.tpl');
     }

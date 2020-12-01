@@ -15,6 +15,9 @@ class ProductoView {
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->display('templates/productos.tpl');
     }
 
@@ -25,6 +28,9 @@ class ProductoView {
     public function mostrarProductos($productos,$categorias,$pagina = null,$total_paginas){
         $this->smarty->assign('productos',$productos);
         $this->smarty->assign('categorias',$categorias);
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         if (!$pagina) {$this->smarty->assign('pagination',1);}
         else $this->smarty->assign('pagination',$pagina);
         $this->smarty->assign('total_paginas',$total_paginas);
@@ -39,6 +45,9 @@ class ProductoView {
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->display('templates/detalle.tpl');
     }
 
@@ -49,12 +58,16 @@ class ProductoView {
         if (isset($_SESSION['username'])){
             $this->smarty->assign('logged',true);
         }
+        if (isset($_SESSION['permisos']) && ($_SESSION['permisos'] == 1) ){
+            $this->smarty->assign('isAdmin',true);
+        }
         $this->smarty->display('templates/detalle.tpl');
     }
 
     public function DisplayAdmin($productos,$categorias) {
         $this->smarty->assign('productos',$productos);
         $this->smarty->assign('selectCate',$categorias);
+        $this->smarty->assign('isAdmin',true);
         $this->smarty->assign('logged',true);
         $this->smarty->display('templates/admin.tpl');
     }
