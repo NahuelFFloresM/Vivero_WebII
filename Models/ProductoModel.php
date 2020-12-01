@@ -20,8 +20,7 @@ class ProductoModel {
 
     public function getProductosAdmin(){
 
-        $query = "SELECT * FROM producto ";
-        $sentencia = $this->db->prepare($query);
+        $sentencia = $this->db->prepare("SELECT * FROM producto");
         $sentencia->execute();
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
