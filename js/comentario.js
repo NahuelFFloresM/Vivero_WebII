@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
         fetch(`api/comentarios/${id.value}`)
         .then(response => response.json())
         .then(response => {
-            let content = document.querySelector('#container_comentarios');  
+            let content = document.querySelector('#lista_comentarios');  
             content.innerHTML = "" ;
             for(let comentario of response){
             content.innerHTML +=crearComentarioHTML(comentario);
@@ -49,9 +49,17 @@ document.addEventListener("DOMContentLoaded", function(){
     mostrarComentarios();
 
     function crearComentarioHTML(comentario) {
-        let element = `${comentario.comentario} - ${comentario.puntuacion}`;
-        element = `<li>${element}</li>`;
-        return element;  
+        let element = `<li class="border border-primary pt-2 pb-2 mt-2 mb-2">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                ${comentario.comentario}
+                            </div>
+                            <div class="col-lg-6">
+                                (${comentario.puntuacion} Pts)
+                            </div>
+                        </div>
+                    </li>`;
+        return element;
     }
 });
 
