@@ -13,6 +13,9 @@ header{
 #pagination-nav{
   margin: auto;
 }
+#lista_comentarios{
+  list-style: none;
+}
 
 #form_buscador{
   text-align: center;

@@ -50,7 +50,7 @@
                                     <!-- Puntuación para el Producto -->
                                     <h3>Puntuación del Producto</h2>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=1>
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=1 required>
                                         <label class="form-check-label" for="inlineRadio1">1</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -80,8 +80,7 @@
                         <div class="col-md-6">
                             <h2>Comentarios de este Producto</h2>
                             <section id="container_comentarios">
-                                <ul>
-                                
+                                <ul id="lista_comentarios">
                                 </ul>
                             </section>
                         </div>
