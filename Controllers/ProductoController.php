@@ -85,6 +85,7 @@ class ProductoController {
             $stock = $_POST['product_stock'];
             $description = $_POST['product_description'];
             $idcat = $_POST['id_categoria'];
+            $filepath = 'default.png';
             if ($_FILES['image_url']['name']) {
                 if ($_FILES['image_url']['type'] == "image/jpeg" || $_FILES['image_url']['type'] == "image/jpg" || $_FILES['image_url']['type'] == "image/png") {
                     $filepath = $this->moveFile($_FILES['image_url']);
@@ -94,7 +95,7 @@ class ProductoController {
                 }
             }
             else {
-                $status = $this->model->nuevoProducto($nombre,$precio,$stock,$description,$idcat);
+                $status = $this->model->nuevoProducto($nombre,$precio,$stock,$description,$idcat,$filepath);
             }
             header("Location: ".URL_ADMIN);
             die;
@@ -129,7 +130,7 @@ class ProductoController {
                     $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,null,$id);
                     $this->borrarImagen($filepath_actual->imagen_url);
                 } else {
-                    $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath_actual,$id);
+                    $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath_actual->imagen_url,$id);
                 }                
             }
             header("Location: ".URL_ADMIN);
