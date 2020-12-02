@@ -85,7 +85,7 @@ class ProductoController {
             $stock = $_POST['product_stock'];
             $description = $_POST['product_description'];
             $idcat = $_POST['id_categoria'];
-            $filepath = 'default.png';
+            $filepath = 'images/default.png';
             if ($_FILES['image_url']['name']) {
                 if ($_FILES['image_url']['type'] == "image/jpeg" || $_FILES['image_url']['type'] == "image/jpg" || $_FILES['image_url']['type'] == "image/png") {
                     $filepath = $this->moveFile($_FILES['image_url']);
