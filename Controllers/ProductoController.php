@@ -49,7 +49,7 @@ class ProductoController {
             $pagina = 1;
             $offset = 0;
         }        
-        $productos = $this->model->getProductos($offset);
+        $productos = $this->model->getProductos($offset,$this->itemsXpagina);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
         $cantidad_paginas = $this->model->getCantidadProductos();

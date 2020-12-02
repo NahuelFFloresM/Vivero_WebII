@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipprecioproducto">Precio</label>
-                        <input name="product_price" type="number" class="form-control" id="validationTooltipprecioproducto" placeholder="Precio" value="" required>
+                        <input name="product_price" type="number" class="form-control" id="validationTooltipprecioproducto" placeholder="Precio" value="" min="0" required>
                         <div class="valid-tooltip">
                             Looks good!
                         </div>
@@ -37,7 +37,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipstockproducto">Stock</label>
-                        <input name="product_stock"type="number" class="form-control" id="validationTooltipstockproducto" placeholder="Stock" value="" required>
+                        <input name="product_stock"type="number" class="form-control" id="validationTooltipstockproducto" placeholder="Stock" value="" min="0"r equired>
                         <div class="invalid-tooltip">
                             Please provide a valid Stock.
                         </div>
@@ -104,11 +104,6 @@
                 <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria">Usuarios</button>
             </a>
         </li>
-        <!--<li>
-            <a href="admin/comentarios">
-                <button type="button" class="btn btn-secondary ml-2 mr-2" id="toggleCategoria">Comentarios</button>
-            </a>
-        </li>-->
     </ul>
 </div>
 <div class="container">

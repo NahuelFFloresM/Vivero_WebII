@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-md-1 mb-3">
                                 <label for="validationTooltip02">Precio</label>
-                                <input name="product_price" type="number" class="form-control" id="validationTooltip02" placeholder="Precio" value="{$producto->precio_producto}" required>
+                                <input name="product_price" type="number" class="form-control" id="validationTooltip02" placeholder="Precio" min="0" value="{$producto->precio_producto}" required>
                                 <div class="valid-tooltip">
                                 Looks good!
                                 </div>
@@ -128,7 +128,7 @@
                         <div class="form-row">
                             <div class="col-md-3 mb-3">
                                 <label for="validationTooltip03">Stock</label>
-                                <input name="product_stock"type="number" class="form-control" id="validationTooltip03" placeholder="Stock" value="{$producto->stock_producto}" required>
+                                <input name="product_stock"type="number" class="form-control" id="validationTooltip03" placeholder="Stock" value="{$producto->stock_producto}" min="0" required>
                                 <div class="invalid-tooltip">
                                     Please provide a valid Stock.
                                 </div>

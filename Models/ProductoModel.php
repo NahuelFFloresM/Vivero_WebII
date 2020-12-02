@@ -8,9 +8,9 @@ class ProductoModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_vivero;charset=utf8', 'root', '');
     }
     
-	public function getProductos($offset = null){
+	public function getProductos($offset = null,$itemsXpag){
 
-        $query = "SELECT * FROM producto LIMIT 5 OFFSET ".$offset;
+        $query = "SELECT * FROM producto LIMIT ".$itemsXpag." OFFSET ".$offset;
         $sentencia = $this->db->prepare($query);
         $sentencia->execute();
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -59,7 +59,7 @@ class ProductoModel {
         return $producto;
     }
 
-    public function nuevoProducto($nombre,$precio,$stock,$description,$idcat,$img_url = "../images/default.jpg"){
+    public function nuevoProducto($nombre,$precio,$stock,$description,$idcat,$img_url = "images/default.jpg"){
         $sentencia = $this->db->prepare('INSERT INTO producto(nombre_producto,precio_producto,stock_producto,description_producto,id_categoria,imagen_url,destacado_producto)
                                          VALUES(?,?,?,?,?,?,?)');        
         return $sentencia->execute([$nombre,$precio,$stock,$description,$idcat,$img_url,0]);
