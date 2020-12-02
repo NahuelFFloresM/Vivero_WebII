@@ -199,16 +199,19 @@ class ProductoController {
             $pagina = 1;
             $offset = 0;
         }
-        $categoria = $_POST['id_categoria'];
-        $nombre = $_POST['nombre_producto'];
-        $precio = $_POST['precio_producto'];
+        if (isset($_POST['id_categoria'])) {$categoria = $_POST['id_categoria'];}
+        else {$categoria = -1;}
+        if (isset($_POST['nombre_producto'])) $nombre = $_POST['nombre_producto'];
+        else {$nombre = "";}
+        if (isset($_POST['precio_producto'])) $precio = $_POST['precio_producto'];
+        else {$precio = -1;}
         $productos = $this->model->buscarProductos($categoria,$nombre,$precio);
         $respuesta = array_slice($productos,$offset,$this->itemsXpagina);
         $categoriaM = new CategoriaModel();
         $categorias = $categoriaM->getCategorias();
         // Total de paginas de lo buscado
         $cantidad_paginas = floor(count($productos)/($this->itemsXpagina));
-        $this->view->mostrarProductos($respuesta,$categorias,$pagina,$cantidad_paginas);
+        $this->view->mostrarBuscados($respuesta,$categorias,$pagina,$cantidad_paginas,$categoria,$nombre,$precio);
     }
 }
 

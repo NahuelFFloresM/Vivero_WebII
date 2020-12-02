@@ -103,7 +103,7 @@ class ProductoModel {
             $sentencia .= 'AND cat.id_categoria = ? ';
             array_push($valores,$categoria);
         }        
-        if($precio != 0){
+        if($precio > 0){
             $sentencia .= 'AND pr.precio_producto <= ? ';
             array_push($valores,$precio);
         }

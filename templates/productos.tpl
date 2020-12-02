@@ -99,6 +99,7 @@
                             {/foreach}
                         </tbody>
                     </table>
+                    {if !isset($buscador)}
                     <nav aria-label="..." id="pagination-nav" class="d-flex justify-content-center">
                         <ul class="pagination">
                             <li class="page-item {if isset($pagination) && ($pagination == 1)}disabled{/if}">
@@ -119,6 +120,41 @@
                             </li>
                         </ul>
                     </nav>
+                    {else}
+                    <nav aria-label="..." id="pagination-nav" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            {* Pagina Previa *}
+                            <li class="page-item">
+                                <form action="buscador/pagina/{$pagination-1}" id="form_buscador" method="POST">
+                                    {if isset($buscarCate)} <input id="id_categoria_buscador" name="id_categoria" type="hidden" value="{$buscarCate}">{/if}
+                                    {if isset($buscarName)} <input id="id_nombre_buscador" name="nombre_producto" type="hidden" value="{$buscarName}">{/if}
+                                    {if isset($buscarPrecio)} <input id="id_precio_buscador" name="precio_producto" type="hidden" value="{$buscarPrecio}">{/if}
+                                    <button type="submit" class="btn " {if isset($pagination) && ($pagination == 1)}disabled{/if}>Previous</button>
+                                </form>
+                            </li>
+                            {* Ciclo de paginas *}
+                            {for $foo=1 to $total_paginas}
+                            <li class="page-item ">
+                                <form action="buscador/pagina/{$foo}" id="form_buscador" method="POST">
+                                    {if isset($buscarCate)} <input id="id_categoria_buscador" name="id_categoria" type="hidden" value="{$buscarCate}">{/if}
+                                    {if isset($buscarName)} <input id="id_nombre_buscador" name="nombre_producto" type="hidden" value="{$buscarName}">{/if}
+                                    {if isset($buscarPrecio)} <input id="id_precio_buscador" name="precio_producto" type="hidden" value="{$buscarPrecio}">{/if}
+                                    <button type="submit" class="btn {if $pagination == $foo}button-active{/if}" >{$foo}</button>
+                                </form>
+                            </li>
+                            {/for}
+                            {* Pagina Siguiente *}
+                            <li class="page-item">
+                                <form action="buscador/pagina/{$pagination+1}" id="form_buscador" method="POST">
+                                    {if isset($buscarCate)} <input id="id_categoria_buscador" name="id_categoria" type="hidden" value="{$buscarCate}">{/if}
+                                    {if isset($buscarName)} <input id="id_nombre_buscador" name="nombre_producto" type="hidden" value="{$buscarName}">{/if}
+                                    {if isset($buscarPrecio)} <input id="id_precio_buscador" name="precio_producto" type="hidden" value="{$buscarPrecio}">{/if}
+                                    <button type="submit" class="btn" {if isset($pagination) && ($pagination == $total_paginas)}disabled{/if}>Siguiente</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                    {/if}
                 {else}
                     <h2>Actulmente no contamos con stock para este producto</h2>
                 {/if}
