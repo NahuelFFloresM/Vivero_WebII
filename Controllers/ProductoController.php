@@ -120,11 +120,12 @@ class ProductoController {
                     $this->view->showError("Formato no aceptado");
                 }
             }
-            if ($filepath){
+            if (isset($filepath)){
                 $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,$filepath,$id);
                 $this->borrarImagen($filepath_actual->imagen_url);
             } else {
-                if (isset($_POST['setBorradoImagen'])){
+                // Chequeo de borrado de imagen y que no sea por la defecto
+                if (isset($_POST['setBorradoImagen']) && isset($filepath_actual)){
                     $this->model->editProducto($nombre,$precio,$stock,$description,$idcat,null,$id);
                     $this->borrarImagen($filepath_actual->imagen_url);
                 } else {
@@ -191,6 +192,7 @@ class ProductoController {
         }
     }
 
+    // BUSCADOR AVANZADO INCIAL Y POR PAGINACION
     function buscadorProducto($params = null){
         if ($params){
             $pagina = $params[':PAG'];

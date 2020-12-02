@@ -131,9 +131,9 @@
                             <td>{$item->description_producto}</td> 
                             <td>
                                 {if ($item->imagen_url) }
-                                        <img src="./{$item->imagen_url}" alt="imagen_producto">
+                                    <img src="./{$item->imagen_url}" alt="imagen_producto">
                                 {else}
-                                    <img src="./images/default.jpg" alt="imagen_producto">
+                                    <img src="./images/default.png" alt="imagen_producto">
                                 {/if}
                             </td> 
                             <td>

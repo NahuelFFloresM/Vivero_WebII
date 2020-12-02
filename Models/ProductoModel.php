@@ -3,9 +3,11 @@
 class ProductoModel {
 
     private $db;
+    private $imageDefault;
 
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_vivero;charset=utf8', 'root', '');
+        $this->imageDefault = "images/default.png";
     }
     
 	public function getProductos($offset = null,$itemsXpag){
@@ -59,7 +61,8 @@ class ProductoModel {
         return $producto;
     }
 
-    public function nuevoProducto($nombre,$precio,$stock,$description,$idcat,$img_url = "images/default.jpg"){
+    public function nuevoProducto($nombre,$precio,$stock,$description,$idcat,$img_url){
+        if (!$img_url) $img_url = $this->$imageDefault;
         $sentencia = $this->db->prepare('INSERT INTO producto(nombre_producto,precio_producto,stock_producto,description_producto,id_categoria,imagen_url,destacado_producto)
                                          VALUES(?,?,?,?,?,?,?)');        
         return $sentencia->execute([$nombre,$precio,$stock,$description,$idcat,$img_url,0]);

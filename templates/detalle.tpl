@@ -147,7 +147,7 @@
                                 {if ($producto->imagen_url) }
                                     <img src="./{$producto->imagen_url}" alt="imagen_producto">
                                 {else}
-                                    <img src="./images/default.jpg" alt="imagen_producto">
+                                    <img src="./images/default.png" alt="imagen_producto">
                                 {/if}
                                 <input type="file" name="image_url" id="imageToUpload" accept="image/png, image/jpeg">
                             </div>
