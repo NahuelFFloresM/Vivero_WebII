@@ -115,7 +115,7 @@
                                     <a class="page-link" href="productos/pagina/1">1</a>
                                 </li>
                             {/if}
-                            <li class="page-item {if isset($pagination) && ($pagination == $total_paginas)}disabled{/if}">
+                            <li class="page-item {if isset($pagination) && ($pagination >= $total_paginas)}disabled{/if}">
                                 <a class="page-link" href="productos/pagina/{$pagination+1}">Next</a>
                             </li>
                         </ul>
