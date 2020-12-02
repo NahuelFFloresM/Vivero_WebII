@@ -9,6 +9,9 @@ header{
   display: flex;
   margin: auto;
 }
+ul{
+  padding: 0;
+}
 
 .button-active{
   z-index: 1;
@@ -23,6 +26,11 @@ header{
 #lista_comentarios{
   list-style: none;
 }
+
+.wraped-text{
+  overflow-wrap: break-word;
+}
+
 
 #form_buscador{
   text-align: center;

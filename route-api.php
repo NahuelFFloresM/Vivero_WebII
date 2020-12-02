@@ -16,15 +16,7 @@ $router = new Router();
 // arma la tabla de ruteo
 $router->addRoute("comentario", "POST", "ComentariosApiController", "agregarComentario");
 $router->addRoute("comentarios/:ID", "GET", "ComentariosApiController", "getComentarios");
-$router->addRoute("comentario/:ID", "GET", "ComentariosApiController", "getComentarioById");
-    //$router->addRoute("comentario/:ID", "PUT", "ComentariosApiController", "editComentario");
 $router->addRoute("comentario/:ID", "DELETE", "ComentariosApiController", "borrarComentario");
-//$router->addRoute("productos/","GET","ProductosApiController","getProductos");
-//$router->addRoute("categorias/","GET","CategoriasApiController","getCategorias");
-//$router->addRoute("usuarios/","GET","UsuariosApiController","getUsers");
-//$router->addRoute("usuarios/:ID","GET","UsuariosApiController","getUserById");
-//$router->addRoute("usuarios/:ID","PUT","UsuariosApiController","editUserById");
-//$router->addRoute("usuarios/:ID","DELETE","UsuariosApiController","deleteUser");
 
 
 

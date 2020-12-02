@@ -48,12 +48,22 @@ class ComentariosApiController extends ApiController{
 
     public function borrarComentario($params =null){
         $body = $this->getData();
-        if($this->isAdmin($body->user_email,$body->password)){
-            $id = $params[':ID'];
-            $response = $this->model->borrarComentario($id);
-            $this->view->response("Borrado Exitosamente",200);
-        } else{
-            $this->view->response("Sin permisos",500);
+        if ($body){
+            if($this->isAdmin($body->user_email,$body->password)){
+                $id = $params[':ID'];
+                $response = $this->model->borrarComentario($id);
+                $this->view->response("Borrado Exitosamente",200);
+            } else{
+                $this->view->response("Sin permisos",500);
+            }
+        } else {
+            if (isset($_SESSION["permisos"]) && ($_SESSION["permisos"] == 1)){
+                $id = $params[':ID'];
+                $response = $this->model->borrarComentario($id);
+                $this->view->response("Borrado Exitosamente",200);
+            } else{
+                $this->view->response("Sin permisos",500);
+            }
         }
     }
 

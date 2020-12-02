@@ -35,7 +35,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-6">
-                        <input name="id_producto" type="hidden" class="form-control" id="id_producto" value="{$producto->id_producto}"></input>
+                        <input name="id_producto" type="hidden" class="form-control" id="id_producto" value="{$producto->id_producto}">
                         
                             {if isset($logged)}
                             <form method="POST" action="#" class="text-center" id="comentario_form">
@@ -80,6 +80,7 @@
                         <div class="col-md-6">
                             <h2>Comentarios de este Producto</h2>
                             <section id="container_comentarios">
+                                {if isset($isAdmin)}<input name="isAdmin" type="hidden" class="form-control" id="isAdmin" value="admin">{/if}
                                 <ul id="lista_comentarios">
                                 </ul>
                             </section>
